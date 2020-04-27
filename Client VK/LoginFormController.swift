@@ -8,30 +8,36 @@
 
 import UIKit
 
-class LoginFormController: UIViewController {
+class LoginFormController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            // Жест нажатия
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeybard))
-            // Присваиваем его UIScrollVIew
+        
+        // клик по любому месту scrollView для скрытия клавиатуры - Жест нажатия
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        // Присваиваем его UIScrollVIew
         scrollViewLogin?.addGestureRecognizer(hideKeyboardGesture)
         
+        // * делегаты для переноса фокуса на следующее поле ввода
+        self.loginTextField.delegate = self
+        self.passwordTextField.delegate = self
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
         // Второе — когда она пропадает
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // отписываемся от уведомлений в конце
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -43,33 +49,55 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: - Functions
-    @objc func keyboardShow (notification: Notification) {
+    // Когда клавиатура появляется
+    @objc func keyboardWillShow (_ notification: Notification) {
+        // Получаем размер клавиатуры
         let info = notification.userInfo! as NSDictionary
         let keyboardSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         let contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
         self.scrollViewLogin?.contentInset = contentInset
         scrollViewLogin?.scrollIndicatorInsets = contentInset
     }
     
-    @objc func keyboardHide (notification: Notification) {
+    //Когда клавиатура исчезает
+    @objc func keyboardWasHide (notification: Notification) {
         let contentInset = UIEdgeInsets.zero
         scrollViewLogin?.contentInset = contentInset
     }
     
-    @objc func hideKeybard(){
+    // клик по любому месту scrollView для скрытия клавиатуры
+    @objc func hideKeyboard(){
         self.scrollViewLogin.endEditing(true)
+    }
+    
+    // * переход на следующий TextField
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            loginPushButton(self)
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
     
     // MARK: - Actions
     @IBAction func loginPushButton(_ sender: Any) {
-
         if loginTextField.text == "admin" && passwordTextField.text == "123456" {
             print("Успешная авторизация")
         } else {
             print("Логин или пароль указаны неверно!")
+            
+            // Создаем контроллер для ошибки
+            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль!", preferredStyle: .alert)
+            // Создаем и добавляем кнопку для UIAlertController
+            let action = UIAlertAction(title: "Повторить", style: .cancel, handler: nil)
+            alert.addAction(action)
+            // Показываем UIAlertController
+            present(alert, animated: true, completion: nil)
         }
     }
-    
     
 }
