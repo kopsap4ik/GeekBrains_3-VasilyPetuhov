@@ -60,7 +60,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         scrollViewLogin?.scrollIndicatorInsets = contentInset
     }
     
-    //Когда клавиатура исчезает
+    //Убираем отступ, когда клавиатура исчезает
     @objc func keyboardWasHide (notification: Notification) {
         let contentInset = UIEdgeInsets.zero
         scrollViewLogin?.contentInset = contentInset
@@ -77,19 +77,15 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else {
             loginPushButton(self)
-            textField.resignFirstResponder()
         }
         return true
     }
     
     
     // MARK: - Actions
+    
     @IBAction func loginPushButton(_ sender: Any) {
-        if loginTextField.text == "admin" && passwordTextField.text == "123456" {
-            print("Успешная авторизация")
-        } else {
-            print("Логин или пароль указаны неверно!")
-            
+        guard loginTextField.text == "admin" && passwordTextField.text == "123456" else {
             // Создаем контроллер для ошибки
             let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль!", preferredStyle: .alert)
             // Создаем и добавляем кнопку для UIAlertController
@@ -97,7 +93,12 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             alert.addAction(action)
             // Показываем UIAlertController
             present(alert, animated: true, completion: nil)
+            return
         }
+        performSegue(withIdentifier: "login", sender: nil)
     }
+    
+    // Для перехода на экран логина (exit например). Нужно добавить сегу на от кнопки на exit в шапке controllera
+    @IBAction func segueToLoginController​(unwindSegue:UIStoryboardSegue) { }
     
 }
