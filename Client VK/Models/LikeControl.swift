@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikeControl: UIControl {
+@IBDesignable class LikeControl: UIControl {
     // инициализация при вызове из кода
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +23,14 @@ class LikeControl: UIControl {
     
     var countLikes = 0
     var userLiked = false
-    let colorNoLike = UIColor.white
-    let colorYesLike = UIColor.red
+    
+    @IBInspectable var colorNoLike: UIColor = UIColor.white {
+        didSet {
+            likeImgView.tintColor = colorNoLike
+            labelLikes.textColor = colorNoLike
+        }
+    }
+    @IBInspectable var colorYesLike: UIColor = UIColor.red
     
     // картинка сердечка
     //let likeImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 20))
@@ -80,7 +86,7 @@ class LikeControl: UIControl {
 }
     
 
-    // метод для рисования
+    // метод для рисования можно не обращать внимание, это тест
 //    override func draw(_ rect: CGRect) {
         // иконка сердечко
 //        let likeImg: UIImage? = UIImage(systemName: "heart")?.withTintColor(UIColor.white)

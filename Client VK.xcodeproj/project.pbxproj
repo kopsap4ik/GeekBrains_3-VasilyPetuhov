@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935F77B24768C8B00A9AF87 /* LikeControl.swift */; };
 		D946571024731C18003C7342 /* AvatarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946570F24731C18003C7342 /* AvatarViews.swift */; };
-		D9688F092473F967002CBD9E /* LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688F082473F967002CBD9E /* LikeButtonView.swift */; };
+		D9688F092473F967002CBD9E /* old - LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688F082473F967002CBD9E /* old - LikeButtonView.swift */; };
 		D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50424557A47005CC3BA /* AppDelegate.swift */; };
 		D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50624557A47005CC3BA /* SceneDelegate.swift */; };
 		D96DF50C24557A47005CC3BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96DF50A24557A47005CC3BA /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		D935F77B24768C8B00A9AF87 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		D946570F24731C18003C7342 /* AvatarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViews.swift; sourceTree = "<group>"; };
-		D9688F082473F967002CBD9E /* LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonView.swift; sourceTree = "<group>"; };
+		D9688F082473F967002CBD9E /* old - LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "old - LikeButtonView.swift"; sourceTree = "<group>"; };
 		D96DF50124557A47005CC3BA /* Client VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Client VK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96DF50424557A47005CC3BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96DF50624557A47005CC3BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 				D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */,
 				D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */,
 				D946570F24731C18003C7342 /* AvatarViews.swift */,
-				D9688F082473F967002CBD9E /* LikeButtonView.swift */,
+				D9688F082473F967002CBD9E /* old - LikeButtonView.swift */,
 				D935F77B24768C8B00A9AF87 /* LikeControl.swift */,
 			);
 			path = Models;
@@ -179,7 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9688F092473F967002CBD9E /* LikeButtonView.swift in Sources */,
+				D9688F092473F967002CBD9E /* old - LikeButtonView.swift in Sources */,
 				D98FD8EB246DD4270080057D /* GroupTableViewCell.swift in Sources */,
 				D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */,
 				D96DF5192455BF19005CC3BA /* LoginFormController.swift in Sources */,
