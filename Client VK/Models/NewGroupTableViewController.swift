@@ -43,7 +43,13 @@ class NewGroupTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddGroup", for: indexPath)  as! NewGroupTableViewCell
 
         cell.nameNewGroupLabel.text = GroupsList[indexPath.row]
-        cell.avatarNewGroupImageView.image = avatarsGroupList[indexPath.row]
+        
+        // задать аватар пользователя, если его нет в массиве, то ставится системная иконка
+        if avatarsGroupList.count > indexPath.row  {
+            let avatar = avatarsGroupList[indexPath.row] //четко по массиву
+            //let avatar = avatarsGroupList.randomElement()! // случайная картинка из массива
+            cell.avatarNewGroupView.avatarImage.image = avatar
+        }
 
         return cell
     }

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935F77B24768C8B00A9AF87 /* LikeControl.swift */; };
-		D946571024731C18003C7342 /* AvatarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946570F24731C18003C7342 /* AvatarViews.swift */; };
-		D9688F092473F967002CBD9E /* old - LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688F082473F967002CBD9E /* old - LikeButtonView.swift */; };
+		D946571024731C18003C7342 /* delete - AvatarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946570F24731C18003C7342 /* delete - AvatarViews.swift */; };
+		D9688F092473F967002CBD9E /* delete - LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688F082473F967002CBD9E /* delete - LikeButtonView.swift */; };
 		D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50424557A47005CC3BA /* AppDelegate.swift */; };
 		D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50624557A47005CC3BA /* SceneDelegate.swift */; };
 		D96DF50C24557A47005CC3BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96DF50A24557A47005CC3BA /* Main.storyboard */; };
@@ -22,14 +22,15 @@
 		D98FD8EB246DD4270080057D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */; };
 		D98FD8ED246E818B0080057D /* NewGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */; };
 		D98FD8EF246E81A10080057D /* NewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */; };
+		D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F871DE2477D331000E8684 /* AvatarsView.swift */; };
 		D9FB6E14246D781700F16C31 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E13246D781700F16C31 /* FriendTableViewCell.swift */; };
 		D9FB6E17246D7CE600F16C31 /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E16246D7CE600F16C31 /* FriendTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D935F77B24768C8B00A9AF87 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
-		D946570F24731C18003C7342 /* AvatarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViews.swift; sourceTree = "<group>"; };
-		D9688F082473F967002CBD9E /* old - LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "old - LikeButtonView.swift"; sourceTree = "<group>"; };
+		D946570F24731C18003C7342 /* delete - AvatarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "delete - AvatarViews.swift"; sourceTree = "<group>"; };
+		D9688F082473F967002CBD9E /* delete - LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "delete - LikeButtonView.swift"; sourceTree = "<group>"; };
 		D96DF50124557A47005CC3BA /* Client VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Client VK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96DF50424557A47005CC3BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96DF50624557A47005CC3BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewController.swift; sourceTree = "<group>"; };
 		D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D9F871DE2477D331000E8684 /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		D9FB6E13246D781700F16C31 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		D9FB6E16246D7CE600F16C31 /* FriendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,9 +103,10 @@
 				D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */,
 				D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */,
 				D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */,
-				D946570F24731C18003C7342 /* AvatarViews.swift */,
-				D9688F082473F967002CBD9E /* old - LikeButtonView.swift */,
+				D946570F24731C18003C7342 /* delete - AvatarViews.swift */,
+				D9688F082473F967002CBD9E /* delete - LikeButtonView.swift */,
 				D935F77B24768C8B00A9AF87 /* LikeControl.swift */,
+				D9F871DE2477D331000E8684 /* AvatarsView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,13 +182,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9688F092473F967002CBD9E /* old - LikeButtonView.swift in Sources */,
+				D9688F092473F967002CBD9E /* delete - LikeButtonView.swift in Sources */,
 				D98FD8EB246DD4270080057D /* GroupTableViewCell.swift in Sources */,
 				D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */,
 				D96DF5192455BF19005CC3BA /* LoginFormController.swift in Sources */,
 				D98FD8ED246E818B0080057D /* NewGroupTableViewController.swift in Sources */,
 				D9FB6E17246D7CE600F16C31 /* FriendTableViewController.swift in Sources */,
-				D946571024731C18003C7342 /* AvatarViews.swift in Sources */,
+				D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */,
+				D946571024731C18003C7342 /* delete - AvatarViews.swift in Sources */,
 				D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */,
 				D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */,
 				D9FB6E14246D781700F16C31 /* FriendTableViewCell.swift in Sources */,

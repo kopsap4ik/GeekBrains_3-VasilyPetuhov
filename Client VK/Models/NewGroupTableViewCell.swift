@@ -11,7 +11,7 @@ import UIKit
 class NewGroupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameNewGroupLabel: UILabel!
-    @IBOutlet weak var avatarNewGroupImageView: UIImageView!
+    @IBOutlet weak var avatarNewGroupView: AvatarsView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

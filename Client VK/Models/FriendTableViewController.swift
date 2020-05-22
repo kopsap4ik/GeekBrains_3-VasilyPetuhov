@@ -18,6 +18,13 @@ class FriendTableViewController: UITableViewController {
         "Петров Николай",
         "Аня",
         "Аня",
+        "Анюшка",
+        "Андрей",
+        "Август",
+        "Иван",
+        "Лука",
+        "Bob Ib",
+        "Valentina",
         "Анна"
     ]
     
@@ -102,11 +109,9 @@ class FriendTableViewController: UITableViewController {
         
         // задать аватар пользователя, если его нет в массиве, то ставится системная иконка
         if avatarsFriendsList.count > indexPath.row  {
-            //let avatar = avatarsFriendsList[indexPath.row] //четко по массиву
-            let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
-            cell.avatarFriendImageView.image = avatar
-        } else {
-            cell.avatarFriendImageView.image = UIImage(systemName: "person")
+            let avatar = avatarsFriendsList[indexPath.row] //четко по массиву
+            //let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
+            cell.avatarFriendView.avatarImage.image = avatar
         }
         
         // показывать итоговую ячейку

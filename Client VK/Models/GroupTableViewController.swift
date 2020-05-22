@@ -28,10 +28,14 @@ class GroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsCell", for: indexPath) as! GroupTableViewCell
         
-        
-        
         cell.nameGroupLabel.text = myGroupsList[indexPath.row]
-        cell.avatarGroupImageView.image = avatarsMyGroupList[indexPath.row]
+        
+        // задать аватар группы, если его нет в массиве, то ставится системная иконка
+        if avatarsMyGroupList.count > indexPath.row  {
+            let avatar = avatarsMyGroupList[indexPath.row] //четко по массиву
+            //let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
+            cell.avatarGroupView.avatarImage.image = avatar
+        }
 
         return cell
     }
