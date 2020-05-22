@@ -12,6 +12,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     // MARK: UICollectionViewDataSource
