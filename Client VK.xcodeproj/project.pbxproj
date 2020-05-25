@@ -80,7 +80,8 @@
 		D96DF50324557A47005CC3BA /* Client VK */ = {
 			isa = PBXGroup;
 			children = (
-				D9FB6E15246D7CAE00F16C31 /* Models */,
+				D9F871E7247B0EC6000E8684 /* Controls */,
+				D9FB6E15246D7CAE00F16C31 /* Views */,
 				D96DF50424557A47005CC3BA /* AppDelegate.swift */,
 				D96DF50624557A47005CC3BA /* SceneDelegate.swift */,
 				D96DF5182455BF19005CC3BA /* LoginFormController.swift */,
@@ -92,7 +93,7 @@
 			path = "Client VK";
 			sourceTree = "<group>";
 		};
-		D9FB6E15246D7CAE00F16C31 /* Models */ = {
+		D9F871E7247B0EC6000E8684 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
 				D9FB6E13246D781700F16C31 /* FriendTableViewCell.swift */,
@@ -105,10 +106,17 @@
 				D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */,
 				D946570F24731C18003C7342 /* delete - AvatarViews.swift */,
 				D9688F082473F967002CBD9E /* delete - LikeButtonView.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		D9FB6E15246D7CAE00F16C31 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				D935F77B24768C8B00A9AF87 /* LikeControl.swift */,
 				D9F871DE2477D331000E8684 /* AvatarsView.swift */,
 			);
-			path = Models;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

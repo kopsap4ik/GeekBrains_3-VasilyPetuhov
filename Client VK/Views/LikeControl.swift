@@ -36,7 +36,7 @@ import UIKit
     //let likeImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 20))
     let likeImgView = UIImageView(image: UIImage(systemName: "heart"))
     // количество лайков
-    let labelLikes = UILabel(frame: CGRect(x: 23, y: -1, width: (40), height: 20))
+    let labelLikes = UILabel(frame: CGRect(x: 23, y: -1, width: 40, height: 20))
     
     // настройка контрола
     func setupLikeControl() {
