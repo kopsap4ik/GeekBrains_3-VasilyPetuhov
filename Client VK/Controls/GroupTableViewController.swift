@@ -12,17 +12,10 @@ class GroupTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //поисковый бар (добавление через код)
-        //searchController = UISearchController(searchResultsController: nil)
-        //tableView.tableHeaderView = searchController.searchBar
     }
 
     var myGroupsList: [String] = ["Самая лучшая группа"]
     var avatarsMyGroupList: [UIImage?] = [UIImage(named: "group1")]
-    
-    //поисковый бар (добавление через код)
-    //var searchController: UISearchController!
     
 
     // MARK: - Table view data source

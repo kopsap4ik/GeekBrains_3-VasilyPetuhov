@@ -165,12 +165,19 @@
                             <outlet property="delegate" destination="wjo-qr-X6b" id="2jt-TB-dXr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Друзья" id="duB-1S-J9b"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="duB-1S-J9b">
+                        <barButtonItem key="leftBarButtonItem" title="Выйти" id="MAI-AK-aBh">
+                            <connections>
+                                <segue destination="utU-7a-TEH" kind="unwind" unwindAction="segueToLoginController​WithSegue:" id="5xT-KR-lBg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="iiM-S6-PFl" id="Yv6-fM-kXB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gH-Gz-elN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="utU-7a-TEH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3089.8550724637685" y="-150"/>
         </scene>
@@ -222,6 +229,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Мои группы" id="16t-eo-XYC">
+                        <barButtonItem key="leftBarButtonItem" title="Выйти" id="n40-Al-H1j">
+                            <connections>
+                                <segue destination="ZJB-ou-PqE" kind="unwind" unwindAction="segueToLoginController​WithSegue:" id="2dQ-0M-SQu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tWw-uC-91p">
                             <connections>
                                 <segue destination="eqN-r0-WPg" kind="show" id="ISx-H0-Kk8"/>
@@ -230,6 +242,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0Z-4b-h3I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ZJB-ou-PqE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3089.8550724637685" y="507.58928571428567"/>
         </scene>

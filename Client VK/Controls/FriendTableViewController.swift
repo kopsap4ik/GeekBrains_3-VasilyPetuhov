@@ -12,6 +12,9 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    //поисковый бар (добавление через код)
+    //var searchController: UISearchController!
+    
     var friendsList = [
         "Коля",
         "Вася",
@@ -51,6 +54,10 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         tableView.dataSource = self
         searchBar.delegate = self
         searchList = friendsList
+        
+        //поисковый бар (добавление через код)
+        //searchController = UISearchController(searchResultsController: nil)
+        //tableView.tableHeaderView = searchController.searchBar
         
         // создаем сортированный массив из первых букв всех доступных имен
         sortCharacterOfNamesAlphabet()
@@ -98,12 +105,13 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
     // настройка хедера ячеек и добавление букв в него
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .cyan
-        header.alpha = 0.3
+        header.backgroundColor = UIColor.cyan.withAlphaComponent(0.3) // прозрачность только хедера
+        //header.alpha = 0.3
         
         let leter: UILabel = UILabel(frame: CGRect(x: 30, y: 5, width: 20, height: 20))
-        leter.textColor = .black
+        leter.textColor = UIColor.black.withAlphaComponent(0.5)  // прозрачность только надписи
         leter.text = letersOfNames[section]
+        leter.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
         header.addSubview(leter)
         
         return header
