@@ -105,7 +105,7 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
     // настройка хедера ячеек и добавление букв в него
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = UIColor.cyan.withAlphaComponent(0.3) // прозрачность только хедера
+        header.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3) // прозрачность только хедера
         //header.alpha = 0.3
         
         let leter: UILabel = UILabel(frame: CGRect(x: 30, y: 5, width: 20, height: 20))
@@ -143,7 +143,7 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendTableViewCell
         
-        cell.backgroundColor = UIColor.cyan
+        //cell.backgroundColor = UIColor.cyan
         
         // задать имя пользователя (ищет по буквам для расстановки по секциям) + сортировка по алфавиту
         var usersRow = [String]()

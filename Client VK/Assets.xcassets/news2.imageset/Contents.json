@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "random_data_watermark.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
