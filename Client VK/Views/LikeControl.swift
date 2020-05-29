@@ -48,7 +48,7 @@ import UIKit
 //        let likeImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
 //        likeImgView.image = UIImage(systemName: "heart")
         likeImgView.tintColor = colorNoLike
-        likeImgView.layer.shadowColor = UIColor.white.cgColor
+        likeImgView.layer.shadowColor = UIColor.gray.cgColor
         likeImgView.layer.shadowOpacity = 0.9
         likeImgView.layer.shadowRadius = 10
         likeImgView.layer.shadowOffset = CGSize.zero
@@ -74,6 +74,7 @@ import UIKit
             self.likeImgView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
             self.likeImgView.transform = original
+            //self.transform = .identity // возврат состояния вьюхи
         })
         
         // статичные внешние параметры, можно добавить в анимацию

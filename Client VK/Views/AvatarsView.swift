@@ -34,13 +34,13 @@ import UIKit
     
     // анимация при тапе на аватар
     @objc func onTap(gestureRecognizer: UITapGestureRecognizer) {
-        let original = self.avatarImage.transform // начальное положение
-        
-        UIView.animate(withDuration: 0.1, delay: 0, options: [ .autoreverse], animations: {
-            //self.avatarImage.frame.size = CGSize(width: self.frame.width * 0.9, height: self.frame.height * 0.9)
-            self.avatarImage.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        let original = self.transform // начальное состояние вьюхи
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 0.1, options: [ .autoreverse], animations: {
+            self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8) // меняем размер вьюхи анимировано
         }, completion: { _ in
-            self.avatarImage.transform = original
+            self.transform = original // возврат состояния вьюхи на сохраненное значение
+            //self.transform = .identity // возврат состояния вьюхи
         })
     }
     

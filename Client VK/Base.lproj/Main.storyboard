@@ -53,6 +53,14 @@
                                             <action selector="loginPushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6rn-df-uPJ"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwq-ds-aUv" customClass="LoadingAnimationView" customModule="Client_VK" customModuleProvider="target">
+                                        <rect key="frame" x="167" y="539" width="80" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Emr-AW-1I0"/>
+                                            <constraint firstAttribute="width" constant="80" id="HKh-s7-3Vb"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4ni-wF-J7M" firstAttribute="top" secondItem="6cc-f4-FMi" secondAttribute="bottom" constant="20" id="3mh-EJ-Wls"/>
@@ -66,6 +74,8 @@
                                     <constraint firstItem="YMo-Ac-YEI" firstAttribute="top" secondItem="4ni-wF-J7M" secondAttribute="bottom" constant="20" id="aAK-d5-Q9U"/>
                                     <constraint firstItem="6cc-f4-FMi" firstAttribute="top" secondItem="yka-5I-cxK" secondAttribute="bottom" constant="30" id="aYE-7g-S1T"/>
                                     <constraint firstItem="2mE-xs-QBo" firstAttribute="bottom" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="hG5-df-l2A"/>
+                                    <constraint firstItem="uwq-ds-aUv" firstAttribute="top" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="i3r-1e-4WT"/>
+                                    <constraint firstItem="uwq-ds-aUv" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="jpw-8M-pt5"/>
                                     <constraint firstItem="YMo-Ac-YEI" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="pGE-Mz-noX"/>
                                     <constraint firstItem="4ni-wF-J7M" firstAttribute="centerY" secondItem="6jK-KH-fDy" secondAttribute="centerY" id="w2m-rc-2Fe"/>
                                     <constraint firstItem="yka-5I-cxK" firstAttribute="width" secondItem="6cc-f4-FMi" secondAttribute="width" id="zEz-Xv-pID"/>
@@ -93,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="137"/>
+            <point key="canvasLocation" x="875.36231884057975" y="136.60714285714286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="RTX-1D-ZbN">
@@ -561,7 +571,7 @@
         <scene sceneID="N67-0O-sHJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0YP-Ii-Vvd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Новости" image="rectangle.stack" selectedImage="rectangle.stack" catalog="system" id="JYa-Sa-K1z"/>
+                    <tabBarItem key="tabBarItem" title="Новости" image="rectangle.stack" catalog="system" selectedImage="rectangle.stack" id="JYa-Sa-K1z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Y2V-2Q-c7K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -585,6 +595,5 @@
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="rectangle.stack" catalog="system" width="128" height="122"/>
-        <image name="rectangle.stack" width="128" height="128"/>
     </resources>
 </document>
