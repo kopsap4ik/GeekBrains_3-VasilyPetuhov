@@ -65,53 +65,33 @@ import UIKit
     }
 
         // момент первого нажатия (вернуть t​rue,​ если отслеживание прикосновения должно продолжиться, и f​alse​в обратном случае)
-        override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-            if userLiked {
-                userLiked = false
-                countLikes -= 1
-                labelLikes.text = String(countLikes)
-                labelLikes.textColor = colorNoLike
-                likeImgView.tintColor = colorNoLike
-                likeImgView.image =  UIImage(systemName: "heart")
-            } else {
-                userLiked = true
-                countLikes += 1
-                labelLikes.text = String(countLikes)
-                labelLikes.textColor = colorYesLike
-                likeImgView.tintColor = colorYesLike
-                likeImgView.image =  UIImage(systemName: "heart.fill")
-            }
-            return false
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        
+        // анимация при тапе на сердечко
+        let original = self.likeImgView.transform // начальное положение
+        UIView.animate(withDuration: 0.1, delay: 0, options: [ .autoreverse], animations: {
+            //self.avatarImage.frame.size = CGSize(width: self.frame.width * 0.9, height: self.frame.height * 0.9)
+            self.likeImgView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            self.likeImgView.transform = original
+        })
+        
+        // статичные внешние параметры, можно добавить в анимацию
+        if userLiked {
+            userLiked = false
+            countLikes -= 1
+            labelLikes.text = String(countLikes)
+            labelLikes.textColor = colorNoLike
+            likeImgView.tintColor = colorNoLike
+            likeImgView.image =  UIImage(systemName: "heart")
+        } else {
+            userLiked = true
+            countLikes += 1
+            labelLikes.text = String(countLikes)
+            labelLikes.textColor = colorYesLike
+            likeImgView.tintColor = colorYesLike
+            likeImgView.image =  UIImage(systemName: "heart.fill")
         }
+        return false
+    }
 }
-    
-
-    // метод для рисования можно не обращать внимание, это тест
-//    override func draw(_ rect: CGRect) {
-        // иконка сердечко
-//        let likeImg: UIImage? = UIImage(systemName: "heart")?.withTintColor(UIColor.white)
-//        likeImg?.draw(at: CGPoint(x: 0, y: 4))
-        
-        // количество лайков
-//        let text = NSAttributedString(string: String(countLikes), attributes: [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)])
-//        text.draw(at: CGPoint(x: 20, y: 0))
-//
-//
-//        //рисуем линию
-//        let path = UIBezierPath()
-//        path.move(to: CGPoint(x: 1, y: 1))
-//        path.addLine(to: CGPoint(x: 45, y: 45))
-//        UIColor.black.setStroke()
-//        path.stroke()
-//
-//        // пишем текст (как скейлить непонятно)
-////        let text = NSAttributedString(string: "hello")
-////        text.draw(at: CGPoint(x: 10, y: 25))
-//        //let textSize: CGSize = text.size()
-//
-//        var image: UIImage? = UIImage(named: "person1")
-        //image.contentMode =
-        //image?.draw(at: CGPoint(x: 0, y: 0))
-        //image?.draw(in: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        
-//    }

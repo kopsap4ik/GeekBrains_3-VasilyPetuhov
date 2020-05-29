@@ -17,6 +17,11 @@ class GroupTableViewController: UITableViewController {
     var myGroupsList: [String] = ["Самая лучшая группа"]
     var avatarsMyGroupList: [UIImage?] = [UIImage(named: "group1")]
     
+    // нажатие вьюхи
+//    @objc func onTap(sender: UITapGestureRecognizer) {
+//        print("нажатие")
+//    }
+    
 
     // MARK: - Table view data source
 
@@ -37,7 +42,11 @@ class GroupTableViewController: UITableViewController {
             //let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
             cell.avatarGroupView.avatarImage.image = avatar
         }
-
+        
+        // нажатие вьюхи
+//        let tapAvatarsView = UITapGestureRecognizer(target: self, action:  #selector(onTap))
+//        cell.avatarGroupView.addGestureRecognizer(tapAvatarsView)
+        
         return cell
     }
     
@@ -55,11 +64,11 @@ class GroupTableViewController: UITableViewController {
     }
     
     @IBAction func addNewGroup(segue:UIStoryboardSegue) {
+        // добавление новой группы из другого контроллера
         // проверка по идентификатору верный ли переход с ячейки
         if segue.identifier == "AddGroup"{
-            // ссылка на контроллер с которого переход
+            // ссылка объект на контроллер с которого переход
             guard let newGroupFromController = segue.source as? NewGroupTableViewController else { return }
-            //indexPathForSelectedRow
             
             // проверка индекса ячейки
             if let indexPath = newGroupFromController.tableView.indexPathForSelectedRow {

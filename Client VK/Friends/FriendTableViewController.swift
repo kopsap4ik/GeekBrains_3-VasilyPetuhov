@@ -32,11 +32,6 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         "Valentina",
         "Анна"
     ]
-    
-    var searchList: [String] = []
-    
-    var letersOfNames: [String] = []
-
     var avatarsFriendsList: [UIImage?] = [
         UIImage(named: "person1"),
         UIImage(named: "person2"),
@@ -45,7 +40,8 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         UIImage(named: "person5")
     ]
     
-    //let characterNames: [Character] = [A-Z]
+    var searchList: [String] = []
+    var letersOfNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +61,7 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Table view data source
     
+    // поиск по именам
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchList = searchText.isEmpty ? friendsList : friendsList.filter { (item: String) -> Bool in
@@ -135,12 +132,10 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         return countOfRows
     }
     
-    var arrayNames = [String]()
     // запонение ячеек
+    var arrayNames = [String]()
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // получить ячейку класса FriendTableViewCell
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendTableViewCell
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendTableViewCell
         
         //cell.backgroundColor = UIColor.cyan
@@ -154,8 +149,6 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         cell.nameFriendLabel.text = usersRow[indexPath.row]
-        
-        
         
         // задать аватар пользователя, если его нет в массиве, то ставится системная иконка
         if avatarsFriendsList.count > indexPath.row  {
