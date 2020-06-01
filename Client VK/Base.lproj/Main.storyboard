@@ -61,6 +61,14 @@
                                             <constraint firstAttribute="width" constant="80" id="HKh-s7-3Vb"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3c-Ju-xOp" customClass="CloudAnimationView" customModule="Client_VK" customModuleProvider="target">
+                                        <rect key="frame" x="147" y="233" width="120" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="Rwk-eS-pHA"/>
+                                            <constraint firstAttribute="height" constant="60" id="SX3-hs-a3A"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4ni-wF-J7M" firstAttribute="top" secondItem="6cc-f4-FMi" secondAttribute="bottom" constant="20" id="3mh-EJ-Wls"/>
@@ -73,6 +81,8 @@
                                     <constraint firstItem="YMo-Ac-YEI" firstAttribute="width" secondItem="6cc-f4-FMi" secondAttribute="width" id="US7-aJ-op8"/>
                                     <constraint firstItem="YMo-Ac-YEI" firstAttribute="top" secondItem="4ni-wF-J7M" secondAttribute="bottom" constant="20" id="aAK-d5-Q9U"/>
                                     <constraint firstItem="6cc-f4-FMi" firstAttribute="top" secondItem="yka-5I-cxK" secondAttribute="bottom" constant="30" id="aYE-7g-S1T"/>
+                                    <constraint firstItem="yka-5I-cxK" firstAttribute="top" secondItem="v3c-Ju-xOp" secondAttribute="bottom" constant="30" id="dlO-f7-IyL"/>
+                                    <constraint firstItem="v3c-Ju-xOp" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="hEU-6z-0NI"/>
                                     <constraint firstItem="2mE-xs-QBo" firstAttribute="bottom" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="hG5-df-l2A"/>
                                     <constraint firstItem="uwq-ds-aUv" firstAttribute="top" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="i3r-1e-4WT"/>
                                     <constraint firstItem="uwq-ds-aUv" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="jpw-8M-pt5"/>

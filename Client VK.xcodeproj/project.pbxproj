@@ -25,6 +25,7 @@
 		D98FD8EB246DD4270080057D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */; };
 		D98FD8ED246E818B0080057D /* NewGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */; };
 		D98FD8EF246E81A10080057D /* NewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */; };
+		D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC48EA2485232800251429 /* CloudAnimationView.swift */; };
 		D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F871DE2477D331000E8684 /* AvatarsView.swift */; };
 		D9FB6E14246D781700F16C31 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E13246D781700F16C31 /* FriendTableViewCell.swift */; };
 		D9FB6E17246D7CE600F16C31 /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E16246D7CE600F16C31 /* FriendTableViewController.swift */; };
@@ -51,6 +52,7 @@
 		D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewController.swift; sourceTree = "<group>"; };
 		D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D9DC48EA2485232800251429 /* CloudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAnimationView.swift; sourceTree = "<group>"; };
 		D9F871DE2477D331000E8684 /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		D9FB6E13246D781700F16C31 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		D9FB6E16246D7CE600F16C31 /* FriendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				D935F77B24768C8B00A9AF87 /* LikeControl.swift */,
 				D9F871DE2477D331000E8684 /* AvatarsView.swift */,
 				D941A5762481180500092CC0 /* LoadingAnimationView.swift */,
+				D9DC48EA2485232800251429 /* CloudAnimationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				D941A5772481180500092CC0 /* LoadingAnimationView.swift in Sources */,
 				D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */,
 				D946571024731C18003C7342 /* delete - AvatarViews.swift in Sources */,
+				D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */,
 				D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */,
 				D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */,
 				D9FB6E14246D781700F16C31 /* FriendTableViewCell.swift in Sources */,
