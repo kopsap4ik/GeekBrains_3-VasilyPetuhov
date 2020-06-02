@@ -525,6 +525,7 @@
                                 <size key="customSize" width="160" height="160"/>
                                 <connections>
                                     <outlet property="photosFrienndImage" destination="gxW-el-bhE" id="CUL-07-1gN"/>
+                                    <segue destination="Hj9-T1-caf" kind="show" identifier="" id="jsc-v8-r5V"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -538,6 +539,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="az9-5G-Xfe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3824.6376811594205" y="-150"/>
+        </scene>
+        <!--Friends Photos View Controller-->
+        <scene sceneID="zFy-7b-tcS">
+            <objects>
+                <viewController id="Hj9-T1-caf" customClass="FriendsPhotosViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yVx-Jh-rMB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news2" translatesAutoresizingMaskIntoConstraints="NO" id="ixD-DP-GgO">
+                                <rect key="frame" x="0.0" y="214" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ixD-DP-GgO" secondAttribute="height" multiplier="1:1" id="SEa-Zr-uAR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ixD-DP-GgO" firstAttribute="centerY" secondItem="yVx-Jh-rMB" secondAttribute="centerY" id="GGv-jq-rHu"/>
+                            <constraint firstItem="ixD-DP-GgO" firstAttribute="width" secondItem="yVx-Jh-rMB" secondAttribute="width" id="Xsd-BP-eZw"/>
+                            <constraint firstItem="ixD-DP-GgO" firstAttribute="centerX" secondItem="yVx-Jh-rMB" secondAttribute="centerX" id="rZf-vV-zJh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fto-Nv-UJY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SvW-dT-ict"/>
+                    <connections>
+                        <outlet property="photoCurent" destination="ixD-DP-GgO" id="heX-zm-mKR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ljn-Q4-r5a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4555" y="-150"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="JzM-LR-yF7">
@@ -601,6 +634,7 @@
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="message" catalog="system" width="128" height="113"/>
+        <image name="news2" width="740" height="416"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
