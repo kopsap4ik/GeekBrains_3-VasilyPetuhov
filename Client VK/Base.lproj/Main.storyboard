@@ -575,7 +575,7 @@
         <!--Друзья-->
         <scene sceneID="JzM-LR-yF7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aoW-ov-lxy" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aoW-ov-lxy" customClass="CustomNavigationController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2" catalog="system" selectedImage="person.2" id="2XH-UW-t6G"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tFw-0j-MIk">
@@ -594,7 +594,7 @@
         <!--Группы-->
         <scene sceneID="6JD-s1-qnn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g5N-z6-xj1" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g5N-z6-xj1" customClass="CustomNavigationController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="person.3" catalog="system" selectedImage="person.3" id="Ox0-ZA-Ts5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jUK-6m-1hB">
@@ -613,7 +613,7 @@
         <!--Новости-->
         <scene sceneID="N67-0O-sHJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0YP-Ii-Vvd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0YP-Ii-Vvd" customClass="CustomNavigationController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="rectangle.stack" catalog="system" selectedImage="rectangle.stack" id="JYa-Sa-K1z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Y2V-2Q-c7K">

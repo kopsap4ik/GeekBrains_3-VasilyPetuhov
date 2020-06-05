@@ -15,7 +15,8 @@ class FriendsPhotosViewController: UIViewController {
         setupImages()
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
-        self.view.addGestureRecognizer(recognizer)
+        view.addGestureRecognizer(recognizer)
+        
     }
     
     @IBOutlet weak var photoCurent: UIImageView!
@@ -33,7 +34,6 @@ class FriendsPhotosViewController: UIViewController {
         photoCurent.image = allPhotos[countCurentPhoto]
     }
     
-        
     @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
 
         switch recognizer.state {
