@@ -28,7 +28,7 @@ class CustomNavigationController: UINavigationController, UINavigationController
         if operation == .push {
             //присвоить свойству объекта тот viewController, для которого хотим сделать интерактивный переход
             self.interactiveTransition.viewController = toVC
-            
+        
             return animatorTwist90Push()
         } else if operation == .pop {
             if navigationController.viewControllers.first != toVC {
@@ -98,7 +98,7 @@ class animatorTwist90Push: NSObject, UIViewControllerAnimatedTransitioning {
         
         transitionContext.containerView.addSubview(destination.view) // добавить в контейнер цель
         
-        destination.view.transform = CGAffineTransform(rotationAngle: -(.pi/2)) // переворот вью на 90градусов
+        destination.view.transform = CGAffineTransform(rotationAngle: -(.pi/2)) // переворот вью цели на 90градусов
         destination.view.frame = CGRect( //это размеры и положение фрейма цели перед анимацией (справа и повернут)
             x: containerViewFrame.width,
             y: 0,
@@ -160,18 +160,12 @@ class animatorTwist90Pop: NSObject, UIViewControllerAnimatedTransitioning {
             height: source.view.frame.width
         )
         
-        
         //анимация
         UIView.animate(
             withDuration: duration,
             animations: {
                 source.view.frame = sourceViewFrame // вывод из окна источника
-                source.view.transform = CGAffineTransform(rotationAngle: -.pi/2) // переворот вью на 90 градусов (ломается при свайпе) и пропадает, хотя вроде рутится если замедлить
-                //source.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5) // это работает при свайпе
-                
-//                let rot = CGAffineTransform(rotationAngle: -(.pi/2))
-//                let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
-//                source.view.transform = rot.concatenating(scale) // тоже не работает
+                source.view.transform = CGAffineTransform(rotationAngle: -.pi/2) // переворот вью на 90 градусов
                 
                 destination.view.transform = .identity // обратный поворот цели
                 destination.view.frame = destinationViewFrame // ввод в окно цели
@@ -210,10 +204,11 @@ class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition {
             self.viewController?.navigationController?.popViewController(animated: true)
         case .changed:
             let translation = recognizer.translation(in: recognizer.view)
-            let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
+            //let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1) //ломается анимашка с поворотом при свайпе, так как экран перевернут и ось Х это ось У
+            let relativeTranslation = translation.y / (recognizer.view?.bounds.width ?? 1)
             let progress = max(0, min(1, relativeTranslation))
             
-            self.shouldFinish = progress > 0.33
+            self.shouldFinish = progress > 0.1
 
             self.update(progress)
         case .ended:

@@ -86,22 +86,20 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginPushButton(_ sender: Any) {
 // авторизация
-//        guard loginTextField.text == "admin" && passwordTextField.text == "123456" else {
-//            // Создаем контроллер для ошибки
-//            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль!", preferredStyle: .alert)
-//            // Создаем и добавляем кнопку для UIAlertController
-//            let action = UIAlertAction(title: "Повторить", style: .cancel, handler: nil)
-//            alert.addAction(action)
-//            // Показываем UIAlertController
-//            present(alert, animated: true, completion: nil)
-//            return
-//        }
- 
+        guard loginTextField.text == "admin" && passwordTextField.text == "123456" else {
+            // Создаем контроллер для ошибки
+            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль!", preferredStyle: .alert)
+            // Создаем и добавляем кнопку для UIAlertController
+            let action = UIAlertAction(title: "Повторить", style: .cancel, handler: nil)
+            alert.addAction(action)
+            // Показываем UIAlertController
+            present(alert, animated: true, completion: nil)
+            return
+        }
         performSegue(withIdentifier: "login", sender: nil)
- 
     }
     
-    
+
     
     // Для перехода на экран логина (exit например). Нужно добавить сегу от некой кнопки на exit в шапке нужного controllera
     @IBAction func segueToLoginController​(segue:UIStoryboardSegue) {
