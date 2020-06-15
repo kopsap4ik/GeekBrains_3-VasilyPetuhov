@@ -63,12 +63,24 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
     
     // поиск по именам
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchList = searchText.isEmpty ? friendsList : friendsList.filter { (item: String) -> Bool in
             return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         sortCharacterOfNamesAlphabet() // создаем заново массив заглавных букв для хедера
         tableView.reloadData()
+    }
+       
+    // отмена поиска (через кнопку Cancel)
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            self.searchBar.showsCancelButton = true // показыть кнопку Cancel
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false // скрыть кнопку Cancel
+        searchBar.text = nil
+        searchList = friendsList // возвращаем массив имен
+        sortCharacterOfNamesAlphabet()  // создаем заново массив заглавных букв для хедера
+        tableView.reloadData() //обновить таблицу
+        searchBar.resignFirstResponder() // скрыть клавиатуру
     }
 
     // созданием массива из начальных букв имен пользователй по алфавиту
