@@ -28,10 +28,10 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         // Второе — когда она пропадает
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHide),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
@@ -50,13 +50,13 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Functions
     // Когда клавиатура появляется
-    @objc func keyboardWillShow (_ notification: Notification) {
+    @objc func keyboardWillShow (notification: Notification) {
         // Получаем размер клавиатуры
         let info = notification.userInfo! as NSDictionary
         let keyboardSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         let contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
         // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
-        self.scrollViewLogin?.contentInset = contentInset
+        scrollViewLogin?.contentInset = contentInset
         scrollViewLogin?.scrollIndicatorInsets = contentInset
     }
     
@@ -68,7 +68,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     // клик по любому месту scrollView для скрытия клавиатуры
     @objc func hideKeyboard(){
-        self.scrollViewLogin.endEditing(true)
+        scrollViewLogin.endEditing(true)
     }
     
     // * переход на следующий TextField
