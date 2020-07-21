@@ -16,7 +16,6 @@ class FriendsPhotosViewController: UIViewController {
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         view.addGestureRecognizer(recognizer)
-        
     }
     
     @IBOutlet weak var photoCurent: UIImageView!
@@ -56,11 +55,11 @@ class FriendsPhotosViewController: UIViewController {
         case .ended:
             interactiveAnimator.stopAnimation(true)
             if recognizer.translation(in: self.view).x < 0 { // проверка в какую сторону движется палец (лево/право)
-                if  countCurentPhoto < allPhotos.count - 1  { // проверка, что фотка будет в массиве и не дулать счетчик больше
+                if  countCurentPhoto < allPhotos.count - 1  { // проверка, что фотка будет в массиве и не делать счетчик больше
                     self.countCurentPhoto += 1
                 }
             } else {
-                if countCurentPhoto != 0 {  // проверка, что фотка будет в массиве и не дулать счетчик меньше
+                if countCurentPhoto != 0 {  // проверка, что фотка будет в массиве и не делать счетчик меньше
                     self.countCurentPhoto -= 1
                 }
             }

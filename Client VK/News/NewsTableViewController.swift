@@ -9,32 +9,15 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
-    struct PostNews {
-        var name: String
-        var avatar: UIImage
-        var date: String
-        var textNews: String
-        var textImage: UIImage
-    }
-    
-    var NewsList: [PostNews] = [
-        PostNews(name: "Victor", avatar: UIImage(named: "person1")!, date: "Вчера в 17:19", textNews: "Променял Восстала исчезнет Чтя Как муж ков вер милосерд нарекший. Достояние развратом наполняет. Враждебен скрежетом примирить румянятся порицаний склонился. Им Ко Со от Уж То те Ах. Но Со цельна Свлеки Единым то До Ты Ея об. Корысть родимся радеешь Встанет болотна Молитвы.", textImage: UIImage(named: "news1")!),
-        PostNews(name: "Валентин", avatar: UIImage(named: "person2")!, date: "14.02.2020 в 17:19", textNews: "Пламенея белизною вниманья истреблю Каратель резвятся. Ослепляет Трепещущи возвестит ему Зря лицемерья тук сим над дев. До Во Из Им ах об. . Да Ее об Он Тя вы не яд. Он тягчайший Евпраксия ах светлеясь мя Им смертного. Оно умиленье избранна созвучны вам зло бог тул воссесть льстецов скрыться. Наших место думаю потек. Муж морских Явилась стареем Величия или зло род ссужает. Своим Ее ли Забыв бы людей Вы забыл.", textImage: UIImage(named: "news2")!),
-        PostNews(name: "Турин", avatar: UIImage(named: "person3")!, date: "27.02.2019 в 17:19", textNews: "Is education residence conveying so so. Suppose shyness say ten behaved morning had. Any unsatiable assistance compliment occasional too reasonably advantages. Unpleasing has ask acceptance partiality alteration understood two. Worth no tiled my at house added. Married he hearing am it totally removal. Remove but suffer wanted his lively length. Moonlight two applauded conveying end direction old principle but. Are expenses distance weddings perceive strongly who age domestic.", textImage: UIImage(named: "news3")!)
+    var NewsList = [
+        PostNews(name: "Victor", avatar: UIImage(named: "person1"), date: "Вчера в 17:19", textNews: "Променял Восстала исчезнет Чтя Как муж ков вер милосерд нарекший. Достояние развратом наполняет. Враждебен скрежетом примирить румянятся порицаний склонился. Им Ко Со от Уж То те Ах. Но Со цельна Свлеки Единым то До Ты Ея об. Корысть родимся радеешь Встанет болотна Молитвы.", textImage: UIImage(named: "news1")),
+        PostNews(name: "Валентин", avatar: UIImage(named: "person2"), date: "14.02.2020 в 17:19", textNews: "Пламенея белизною вниманья истреблю Каратель резвятся. Ослепляет Трепещущи возвестит ему Зря лицемерья тук сим над дев. До Во Из Им ах об. . Да Ее об Он Тя вы не яд. Он тягчайший Евпраксия ах светлеясь мя Им смертного. Оно умиленье избранна созвучны вам зло бог тул воссесть льстецов скрыться. Наших место думаю потек. Муж морских Явилась стареем Величия или зло род ссужает. Своим Ее ли Забыв бы людей Вы забыл.", textImage: UIImage(named: "news2")),
+        PostNews(name: "Турин", avatar: UIImage(named: "person3"), date: "27.02.2019 в 17:19", textNews: "Is education residence conveying so so. Suppose shyness say ten behaved morning had. Any unsatiable assistance compliment occasional too reasonably advantages. Unpleasing has ask acceptance partiality alteration understood two. Worth no tiled my at house added. Married he hearing am it totally removal. Remove but suffer wanted his lively length. Moonlight two applauded conveying end direction old principle but. Are expenses distance weddings perceive strongly who age domestic.", textImage: UIImage(named: "news3"))
     ]
 
 
     // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NewsList.count
@@ -43,13 +26,8 @@ class NewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsTableViewCell
         
-        // задать аватар автора если нет автара, то системная картинка
-        if NewsList.count > indexPath.row  {
-            let avatar = NewsList[indexPath.row].avatar //четко по массиву
-            //let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
-            cell.avatarUserNews.avatarImage.image = avatar
-        }
-        
+        // аватар
+        cell.avatarUserNews.avatarImage.image = NewsList[indexPath.row].avatar
         // имя автора
         cell.nameUserNews.text = NewsList[indexPath.row].name
         // дата новости
@@ -66,5 +44,4 @@ class NewsTableViewController: UITableViewController {
         return cell
     }
 
- 
 }

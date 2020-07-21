@@ -18,17 +18,21 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
     
     // экземпляр FriendTableViewController для доступа к переменным. Иначе их нужно вынести из класса
-    let collectionPhotos = FriendTableViewController()
+//    let collectionPhotos = FriendTableViewController()
+    let collectionPhotos = FriendsList().friendsAll
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return collectionPhotos.avatarsFriendsList.count
+//        return collectionPhotos.avatarsFriendsList.count
+        return collectionPhotos[1].userPhotos.count
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosFriendCell", for: indexPath) as! PhotosFriendCollectionViewCell
         
-        let photo = collectionPhotos.avatarsFriendsList[indexPath.row]
+//        let photo = collectionPhotos.avatarsFriendsList[indexPath.row]
+        let photo = collectionPhotos[0].userPhotos[indexPath.row]
         cell.photosFrienndImage.image = photo
     
         // Configure the cell

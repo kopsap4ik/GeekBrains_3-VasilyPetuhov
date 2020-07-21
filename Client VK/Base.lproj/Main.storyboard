@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -176,7 +176,7 @@
                                 <connections>
                                     <outlet property="avatarFriendView" destination="adX-nh-SU4" id="UbV-F4-Q6R"/>
                                     <outlet property="nameFriendLabel" destination="Rmu-1f-TSi" id="e9U-HF-wfJ"/>
-                                    <segue destination="jh1-hh-Fc4" kind="show" id="44M-5U-OpD"/>
+                                    <segue destination="jh1-hh-Fc4" kind="show" identifier="" id="44M-5U-OpD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

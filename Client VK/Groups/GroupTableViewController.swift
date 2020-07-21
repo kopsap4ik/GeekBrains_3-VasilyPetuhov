@@ -9,52 +9,35 @@
 import UIKit
 
 class GroupTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    var myGroupsList: [String] = ["Самая лучшая группа"]
-    var avatarsMyGroupList: [UIImage?] = [UIImage(named: "group1")]
     
-    // нажатие вьюхи
-//    @objc func onTap(sender: UITapGestureRecognizer) {
-//        print("нажатие")
-//    }
+    var myGroups = [
+        Group(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
+    ]
     
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return myGroupsList.count
+        return myGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsCell", for: indexPath) as! GroupTableViewCell
         
-        cell.nameGroupLabel.text = myGroupsList[indexPath.row]
+        cell.nameGroupLabel.text = myGroups[indexPath.row].groupName
         
-        // задать аватар группы, если его нет в массиве, то ставится системная иконка
-        if avatarsMyGroupList.count > indexPath.row  {
-            let avatar = avatarsMyGroupList[indexPath.row] //четко по массиву
-            //let avatar = avatarsFriendsList.randomElement()! // случайная картинка из массива
-            cell.avatarGroupView.avatarImage.image = avatar
-        }
-        
-        // нажатие вьюхи
-//        let tapAvatarsView = UITapGestureRecognizer(target: self, action:  #selector(onTap))
-//        cell.avatarGroupView.addGestureRecognizer(tapAvatarsView)
+        let avatar = myGroups[indexPath.row].groupLogo //четко по массиву
+        cell.avatarGroupView.avatarImage.image = avatar
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            myGroupsList.remove(at: indexPath.row)
-            avatarsMyGroupList.remove(at: indexPath.row)
-            tableView.reloadData()
+            myGroups.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade) // не обязательно удалять строку, если используется reloadData()
+            //tableView.reloadData()
         }
     }
     
@@ -63,28 +46,23 @@ class GroupTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // добавление новой группы из другого контроллера
     @IBAction func addNewGroup(segue:UIStoryboardSegue) {
-        // добавление новой группы из другого контроллера
         // проверка по идентификатору верный ли переход с ячейки
         if segue.identifier == "AddGroup"{
             // ссылка объект на контроллер с которого переход
             guard let newGroupFromController = segue.source as? NewGroupTableViewController else { return }
-            
             // проверка индекса ячейки
             if let indexPath = newGroupFromController.tableView.indexPathForSelectedRow {
-                //добавить описание и аватар в мои группы
-                let nameGroup = newGroupFromController.GroupsList[indexPath.row]
-                let avatarGroup = newGroupFromController.avatarsGroupList[indexPath.row]
+                //добавить новой группы в мои группы из общего списка групп
+                let newGroup = newGroupFromController.allGroups[indexPath.row]
                 
-                // проверка что группа уже в списке
-                guard !myGroupsList.contains(nameGroup) else { return }
-                myGroupsList.append(nameGroup)
-                avatarsMyGroupList.append(avatarGroup)
+                // проверка что группа уже в списке (нужен Equatable)
+                guard !myGroups.contains(newGroup) else { return }
+                myGroups.append(newGroup)
                 
-                // обновить таблицу
                 tableView.reloadData()
             }
-
         }
     }
 

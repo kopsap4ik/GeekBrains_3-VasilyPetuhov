@@ -39,6 +39,7 @@ class FriendTableViewController: UITableViewController, UISearchBarDelegate {
         UIImage(named: "person4"),
         UIImage(named: "person5")
     ]
+
     
     var searchList: [String] = []
     var letersOfNames: [String] = []
