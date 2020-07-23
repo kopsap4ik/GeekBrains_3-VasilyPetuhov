@@ -14,18 +14,18 @@ struct User {
     let userAvatar: UIImage?
     let userPhotos: [UIImage?]
 }
-
-class FriendsList {
-    let friendsAll = [
-        User(userName: "Коля",
-             userAvatar: (UIImage(named: "person1")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person3"), UIImage(named: "person4")]),
-        
-        User(userName: "Ваня",
-             userAvatar: (UIImage(named: "person2")),
-             userPhotos: [UIImage(named: "person5"), UIImage(named: "person3"), UIImage(named: "person2")])
-    ]
-}
+//
+//class FriendsList {
+//    let friendsAll = [
+//        User(userName: "Коля",
+//             userAvatar: (UIImage(named: "person1")),
+//             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person3"), UIImage(named: "person4")]),
+//        
+//        User(userName: "Ваня",
+//             userAvatar: (UIImage(named: "person2")),
+//             userPhotos: [UIImage(named: "person5"), UIImage(named: "person3"), UIImage(named: "person2")])
+//    ]
+//}
 
 //class FriendsFacory {
 //

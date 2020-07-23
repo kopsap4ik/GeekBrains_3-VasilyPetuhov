@@ -138,7 +138,7 @@
         <!--Друзья-->
         <scene sceneID="d1I-4Q-UeS">
             <objects>
-                <tableViewController id="wjo-qr-X6b" customClass="FriendTableViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="wjo-qr-X6b" customClass="FriendsTableViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QfH-ZK-jml">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +148,7 @@
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" id="9k0-VZ-hgZ" customClass="FriendTableViewCell" customModule="Client_VK" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" id="9k0-VZ-hgZ" customClass="FriendsTableViewCell" customModule="Client_VK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9k0-VZ-hgZ" id="FxT-gq-gdE">
@@ -176,7 +176,7 @@
                                 <connections>
                                     <outlet property="avatarFriendView" destination="adX-nh-SU4" id="UbV-F4-Q6R"/>
                                     <outlet property="nameFriendLabel" destination="Rmu-1f-TSi" id="e9U-HF-wfJ"/>
-                                    <segue destination="jh1-hh-Fc4" kind="show" identifier="" id="44M-5U-OpD"/>
+                                    <segue destination="jh1-hh-Fc4" kind="show" identifier="showListUsersPhoto" id="8IG-3R-0AS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -525,7 +525,7 @@
                                 <size key="customSize" width="160" height="160"/>
                                 <connections>
                                     <outlet property="photosFrienndImage" destination="gxW-el-bhE" id="CUL-07-1gN"/>
-                                    <segue destination="Hj9-T1-caf" kind="show" identifier="" id="jsc-v8-r5V"/>
+                                    <segue destination="Hj9-T1-caf" kind="show" identifier="showUserPhoto" id="jsc-v8-r5V"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

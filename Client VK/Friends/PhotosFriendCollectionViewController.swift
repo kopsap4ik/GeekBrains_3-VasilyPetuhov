@@ -9,35 +9,38 @@
 import UIKit
 
 class PhotosFriendCollectionViewController: UICollectionViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
-    // MARK: UICollectionViewDataSource
     
-    // экземпляр FriendTableViewController для доступа к переменным. Иначе их нужно вынести из класса
-//    let collectionPhotos = FriendTableViewController()
-    let collectionPhotos = FriendsList().friendsAll
-
+    var collectionPhotos: [UIImage?] = []
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-//        return collectionPhotos.avatarsFriendsList.count
-        return collectionPhotos[1].userPhotos.count
-        
+        return collectionPhotos.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosFriendCell", for: indexPath) as! PhotosFriendCollectionViewCell
         
-//        let photo = collectionPhotos.avatarsFriendsList[indexPath.row]
-        let photo = collectionPhotos[0].userPhotos[indexPath.row]
+        let photo = collectionPhotos[indexPath.row]
         cell.photosFrienndImage.image = photo
-    
-        // Configure the cell
-    
+        
         return cell
     }
-
+    
+    // MARK: - segue
+    // переход на контроллер с отображением крупной фотографии
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showUserPhoto"{
+            // ссылка объект на контроллер с которого переход
+            guard let photosFriend = segue.destination as? FriendsPhotosViewController else { return }
+            
+            // индекс нажатой ячейки
+            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                photosFriend.allPhotos = collectionPhotos //фотки
+                photosFriend.countCurentPhoto = indexPath.row // indexPath[0][1] если не использовать ?.first выше
+            }
+        }
+    }
+    
+    
+    
 }

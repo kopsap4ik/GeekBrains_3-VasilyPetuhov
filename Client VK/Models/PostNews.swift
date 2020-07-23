@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct PostNews {
+struct PostNewsStruct {
     var name: String
     var avatar: UIImage?
     var date: String

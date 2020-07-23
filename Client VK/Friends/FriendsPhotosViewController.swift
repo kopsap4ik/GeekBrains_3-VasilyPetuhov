@@ -9,32 +9,27 @@
 import UIKit
 
 class FriendsPhotosViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImages()
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         view.addGestureRecognizer(recognizer)
+        
+        photoCurent.image = allPhotos[countCurentPhoto]
     }
     
     @IBOutlet weak var photoCurent: UIImageView!
     
+    var allPhotos:[UIImage?] = []
+    var countCurentPhoto = 0
+    
+    
+    // MARK: - Animator
     var interactiveAnimator: UIViewPropertyAnimator!
     
-    // экземпляр FriendTableViewController для доступа к переменным.
-    let collectionPhotos = FriendTableViewController()
-    var allPhotos = [UIImage?]()
-    
-    var countCurentPhoto = 0
-
-    func setupImages() {
-        allPhotos = collectionPhotos.avatarsFriendsList
-        photoCurent.image = allPhotos[countCurentPhoto]
-    }
-    
     @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
-
+        
         switch recognizer.state {
         case .began:
             interactiveAnimator?.startAnimation()
@@ -44,9 +39,9 @@ class FriendsPhotosViewController: UIViewController {
                 animations: {
                     self.photoCurent.alpha = 0.5
                     self.photoCurent.transform = .init(scaleX: 1.5, y: 1.5)
-                })
+            })
             interactiveAnimator.pauseAnimation()
-       
+            
         case .changed:
             let translation = recognizer.translation(in: self.view)
             interactiveAnimator.fractionComplete = abs(translation.x / 100)
@@ -68,11 +63,12 @@ class FriendsPhotosViewController: UIViewController {
                 self.photoCurent.alpha = 1
             }
             interactiveAnimator?.startAnimation()
-
+            
         default: break
         }
         photoCurent.image = allPhotos[countCurentPhoto]
         
     }
-
+    
+    
 }
