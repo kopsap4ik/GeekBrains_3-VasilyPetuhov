@@ -10,9 +10,11 @@ import UIKit
 
 class LoginFormController: UIViewController, UITextFieldDelegate {
     
+    let session = Session.instance //синглтон для хранения данных о текущей сессии
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // клик по любому месту scrollView для скрытия клавиатуры - Жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
@@ -21,8 +23,6 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // * делегаты для переноса фокуса на следующее поле ввода
         self.loginTextField.delegate = self
         self.passwordTextField.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +33,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // Второе — когда она пропадает
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
