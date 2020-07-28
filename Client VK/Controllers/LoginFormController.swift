@@ -100,7 +100,6 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "login", sender: nil)
     }
     
-
     
     // Для перехода на экран логина (exit например). Нужно добавить сегу от некой кнопки на exit в шапке нужного controllera
     @IBAction func segueToLoginController​(segue:UIStoryboardSegue) {

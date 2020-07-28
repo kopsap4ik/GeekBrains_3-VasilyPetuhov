@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DXN-Lu-crJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -69,6 +69,21 @@
                                             <constraint firstAttribute="height" constant="60" id="SX3-hs-a3A"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvh-b0-d9B">
+                                        <rect key="frame" x="50" y="574" width="314" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="Войти через VK"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="DXN-Lu-crJ" kind="show" identifier="" id="cc6-Jt-K0X"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4ni-wF-J7M" firstAttribute="top" secondItem="6cc-f4-FMi" secondAttribute="bottom" constant="20" id="3mh-EJ-Wls"/>
@@ -86,8 +101,12 @@
                                     <constraint firstItem="2mE-xs-QBo" firstAttribute="bottom" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="hG5-df-l2A"/>
                                     <constraint firstItem="uwq-ds-aUv" firstAttribute="top" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="20" id="i3r-1e-4WT"/>
                                     <constraint firstItem="uwq-ds-aUv" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="jpw-8M-pt5"/>
+                                    <constraint firstItem="Rvh-b0-d9B" firstAttribute="top" secondItem="YMo-Ac-YEI" secondAttribute="bottom" constant="55" id="lQP-bu-aqU"/>
                                     <constraint firstItem="YMo-Ac-YEI" firstAttribute="centerX" secondItem="6jK-KH-fDy" secondAttribute="centerX" id="pGE-Mz-noX"/>
+                                    <constraint firstItem="Rvh-b0-d9B" firstAttribute="centerX" secondItem="YMo-Ac-YEI" secondAttribute="centerX" id="q3k-UJ-TbW"/>
+                                    <constraint firstItem="Rvh-b0-d9B" firstAttribute="height" secondItem="YMo-Ac-YEI" secondAttribute="height" id="rId-sC-Dam"/>
                                     <constraint firstItem="4ni-wF-J7M" firstAttribute="centerY" secondItem="6jK-KH-fDy" secondAttribute="centerY" id="w2m-rc-2Fe"/>
+                                    <constraint firstItem="Rvh-b0-d9B" firstAttribute="width" secondItem="YMo-Ac-YEI" secondAttribute="width" id="yUW-xU-HkK"/>
                                     <constraint firstItem="yka-5I-cxK" firstAttribute="width" secondItem="6cc-f4-FMi" secondAttribute="width" id="zEz-Xv-pID"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="2mE-xs-QBo"/>
@@ -610,16 +629,16 @@
             </objects>
             <point key="canvasLocation" x="2361" y="508"/>
         </scene>
-        <!--Test View Controller-->
+        <!--AuthVK View Controller-->
         <scene sceneID="pdw-bF-gp3">
             <objects>
-                <viewController id="DXN-Lu-crJ" customClass="TestViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DXN-Lu-crJ" customClass="AuthVKViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="72f-cG-2WO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sa-mR-bhe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -636,13 +655,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4yG-rh-nsR"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FHX-e9-fWl"/>
                     <connections>
                         <outlet property="webView" destination="8sa-mR-bhe" id="laF-ly-XlK"/>
+                        <segue destination="enn-Hx-SBd" kind="show" identifier="AuthVKSuccessful" id="3l2-S0-8t4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnX-7N-Vdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117.3913043478262" y="1950"/>
+            <point key="canvasLocation" x="875" y="848"/>
         </scene>
         <!--Новости-->
         <scene sceneID="N67-0O-sHJ">
@@ -664,6 +685,9 @@
             <point key="canvasLocation" x="2361" y="1209"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TVB-QS-BS2"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="eye" catalog="system" width="128" height="81"/>

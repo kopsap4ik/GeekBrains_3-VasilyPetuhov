@@ -30,7 +30,7 @@
 		D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC48EA2485232800251429 /* CloudAnimationView.swift */; };
 		D9DC48ED2485937A00251429 /* FriendsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */; };
 		D9E13E2124CAEB3E00370B7E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2024CAEB3E00370B7E /* Session.swift */; };
-		D9E13E2324CAF99100370B7E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2224CAF99100370B7E /* TestViewController.swift */; };
+		D9E13E2324CAF99100370B7E /* AuthVKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2224CAF99100370B7E /* AuthVKViewController.swift */; };
 		D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F871DE2477D331000E8684 /* AvatarsView.swift */; };
 		D9FB6E14246D781700F16C31 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */; };
 		D9FB6E17246D7CE600F16C31 /* FriendTableViewController0.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */; };
@@ -63,7 +63,7 @@
 		D9DC48EA2485232800251429 /* CloudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAnimationView.swift; sourceTree = "<group>"; };
 		D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosViewController.swift; sourceTree = "<group>"; };
 		D9E13E2024CAEB3E00370B7E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		D9E13E2224CAF99100370B7E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		D9E13E2224CAF99100370B7E /* AuthVKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVKViewController.swift; sourceTree = "<group>"; };
 		D9F871DE2477D331000E8684 /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController0.swift; sourceTree = "<group>"; };
@@ -114,7 +114,6 @@
 		D97587F0247C530600782638 /* oldTest files */ = {
 			isa = PBXGroup;
 			children = (
-				D9E13E2224CAF99100370B7E /* TestViewController.swift */,
 				D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */,
 			);
 			path = "oldTest files";
@@ -135,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				D96DF5182455BF19005CC3BA /* LoginFormController.swift */,
+				D9E13E2224CAF99100370B7E /* AuthVKViewController.swift */,
 				D9D11C8824C86FC000525073 /* FriendsTableViewController.swift */,
 				D98FD8E4246DCF0E0080057D /* PhotosFriendCollectionViewController.swift */,
 				D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */,
@@ -254,7 +254,7 @@
 				D9FB6E17246D7CE600F16C31 /* FriendTableViewController0.swift in Sources */,
 				D9FC1D5B2489392700AC8217 /* CustomNavigationController.swift in Sources */,
 				D941A5772481180500092CC0 /* LoadingAnimationView.swift in Sources */,
-				D9E13E2324CAF99100370B7E /* TestViewController.swift in Sources */,
+				D9E13E2324CAF99100370B7E /* AuthVKViewController.swift in Sources */,
 				D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */,
 				D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */,
 				D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */,
@@ -415,7 +415,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 55MCT9R6B9;
-				INFOPLIST_FILE = "Client VK/Info.plist";
+				INFOPLIST_FILE = "Client VK/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,7 +435,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 55MCT9R6B9;
-				INFOPLIST_FILE = "Client VK/Info.plist";
+				INFOPLIST_FILE = "Client VK/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

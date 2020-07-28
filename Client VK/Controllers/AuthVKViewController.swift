@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class TestViewController: UIViewController {
+class AuthVKViewController: UIViewController {
     
     var session = Session.instance
     
@@ -57,7 +57,7 @@ class TestViewController: UIViewController {
 }
 
 
-extension TestViewController: WKNavigationDelegate {
+extension AuthVKViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment  else {
@@ -80,9 +80,11 @@ extension TestViewController: WKNavigationDelegate {
         
         session.token = token
         session.userId = Int(userID)!
-        print(session.token)
-        print(session.userId)
+//        print(session.token)
+//        print(session.userId)
         
         decisionHandler(.cancel)
+        
+        performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
     }
 }
