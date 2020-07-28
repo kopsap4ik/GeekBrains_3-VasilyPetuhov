@@ -102,32 +102,13 @@
 			children = (
 				D96DF50A24557A47005CC3BA /* Main.storyboard */,
 				D96DF50F24557A4B005CC3BA /* LaunchScreen.storyboard */,
-				D96DF5182455BF19005CC3BA /* LoginFormController.swift */,
-				D96DF50424557A47005CC3BA /* AppDelegate.swift */,
-				D96DF50624557A47005CC3BA /* SceneDelegate.swift */,
-				D96DF51224557A4B005CC3BA /* Info.plist */,
-				D96DF50D24557A4B005CC3BA /* Assets.xcassets */,
+				D9E13E2524D00DC100370B7E /* App */,
+				D9E13E2424D00C6C00370B7E /* Controllers */,
 				D9A5DAC124C5E21E006D3E55 /* Models */,
-				D97587EF247C52DE00782638 /* Friends */,
-				D9F871E7247B0EC6000E8684 /* Groups */,
-				D97587F1247C532800782638 /* News */,
 				D9FB6E15246D7CAE00F16C31 /* Views */,
-				D9FC1D59248938C000AC8217 /* CustomControllers */,
 				D97587F0247C530600782638 /* oldTest files */,
 			);
 			path = "Client VK";
-			sourceTree = "<group>";
-		};
-		D97587EF247C52DE00782638 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				D9D11C8824C86FC000525073 /* FriendsTableViewController.swift */,
-				D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */,
-				D98FD8E4246DCF0E0080057D /* PhotosFriendCollectionViewController.swift */,
-				D98FD8E6246DCF3E0080057D /* PhotosFriendCollectionViewCell.swift */,
-				D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */,
-			);
-			path = Friends;
 			sourceTree = "<group>";
 		};
 		D97587F0247C530600782638 /* oldTest files */ = {
@@ -137,15 +118,6 @@
 				D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */,
 			);
 			path = "oldTest files";
-			sourceTree = "<group>";
-		};
-		D97587F1247C532800782638 /* News */ = {
-			isa = PBXGroup;
-			children = (
-				D97587F2247C534400782638 /* NewsTableViewController.swift */,
-				D97587F4247C535800782638 /* NewsTableViewCell.swift */,
-			);
-			path = News;
 			sourceTree = "<group>";
 		};
 		D9A5DAC124C5E21E006D3E55 /* Models */ = {
@@ -159,34 +131,46 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D9F871E7247B0EC6000E8684 /* Groups */ = {
+		D9E13E2424D00C6C00370B7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D96DF5182455BF19005CC3BA /* LoginFormController.swift */,
+				D9D11C8824C86FC000525073 /* FriendsTableViewController.swift */,
+				D98FD8E4246DCF0E0080057D /* PhotosFriendCollectionViewController.swift */,
+				D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */,
 				D98FD8E8246DD3DC0080057D /* GroupTableViewController.swift */,
-				D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */,
 				D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */,
-				D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */,
+				D97587F2247C534400782638 /* NewsTableViewController.swift */,
+				D9FC1D5A2489392700AC8217 /* CustomNavigationController.swift */,
 			);
-			path = Groups;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D9E13E2524D00DC100370B7E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D96DF50424557A47005CC3BA /* AppDelegate.swift */,
+				D96DF50624557A47005CC3BA /* SceneDelegate.swift */,
+				D96DF51224557A4B005CC3BA /* Info.plist */,
+				D96DF50D24557A4B005CC3BA /* Assets.xcassets */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		D9FB6E15246D7CAE00F16C31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */,
+				D98FD8E6246DCF3E0080057D /* PhotosFriendCollectionViewCell.swift */,
+				D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */,
+				D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */,
+				D97587F4247C535800782638 /* NewsTableViewCell.swift */,
 				D935F77B24768C8B00A9AF87 /* LikeControl.swift */,
 				D9F871DE2477D331000E8684 /* AvatarsView.swift */,
 				D941A5762481180500092CC0 /* LoadingAnimationView.swift */,
 				D9DC48EA2485232800251429 /* CloudAnimationView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D9FC1D59248938C000AC8217 /* CustomControllers */ = {
-			isa = PBXGroup;
-			children = (
-				D9FC1D5A2489392700AC8217 /* CustomNavigationController.swift */,
-			);
-			path = CustomControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

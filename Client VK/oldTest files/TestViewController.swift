@@ -17,10 +17,10 @@ class TestViewController: UIViewController {
         super.viewDidLoad()
         
         // Конфигурация по умолчанию
-        let configuration = URLSessionConfiguration.default
+//        let configuration = URLSessionConfiguration.default
         
         // собственная сессия
-        let session =  URLSession(configuration: configuration)
+//        let session =  URLSession(configuration: configuration)
         
         // создаем конструктор для URL
         var urlConstructor = URLComponents()
@@ -35,7 +35,7 @@ class TestViewController: UIViewController {
             URLQueryItem(name: "client_id", value: "7548358"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "scope", value: "friends,photos,groups"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.120")
         ]
@@ -44,21 +44,6 @@ class TestViewController: UIViewController {
         
         webView.load(request)
 
-        
-//        // задача для запуска
-//        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-//            // в замыкании данные, полученные от сервера, мы преобразуем в json
-//
-//            let json = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-//
-//            // выводим в консоль
-//            print(json)
-//        }
-//
-//        // запускаем задачу
-//        task.resume()
-        
-    
         
     }
     
@@ -97,7 +82,6 @@ extension TestViewController: WKNavigationDelegate {
         session.userId = Int(userID)!
         print(session.token)
         print(session.userId)
-        //print(params)
         
         decisionHandler(.cancel)
     }
