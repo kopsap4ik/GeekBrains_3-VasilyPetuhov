@@ -33,7 +33,6 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // Второе — когда она пропадает
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,9 +100,17 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // Для перехода на экран логина (exit например). Нужно добавить сегу от некой кнопки на exit в шапке нужного controllera
+    // Для перехода на экран логина (exit). Нужно добавить сегу от некой кнопки на exit в шапке нужного controllera
     @IBAction func segueToLoginController​(segue:UIStoryboardSegue) {
         // проверка и действия
+    }
+    
+    @IBAction func authVKSuccessful​(segue:UIStoryboardSegue) {
+        if segue.identifier == "AuthVKSuccessful"{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { //задержка, чтобы отработал контроллер с логином (иначе краш)
+                self.performSegue(withIdentifier: "login", sender: nil)
+            }
+        }
     }
     
 }

@@ -208,14 +208,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             if let indexPath = tableView.indexPathForSelectedRow {
                 photosFriend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
                 photosFriend.collectionPhotos = getPhotosFriend(indexPath) // все фотки пользователя
-                
             }
         }
     }
-    
-    // Для перехода на экран с друзьями после успешной авторизации в ВК
-       @IBAction func segueAuthVKSuccessful​(segue:UIStoryboardSegue) {
-           // проверка и действия
-       }
+
     
 }

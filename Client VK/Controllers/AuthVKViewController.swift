@@ -15,22 +15,22 @@ class AuthVKViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Конфигурация по умолчанию
-//        let configuration = URLSessionConfiguration.default
-        
-        // собственная сессия
-//        let session =  URLSession(configuration: configuration)
-        
-        // создаем конструктор для URL
+        webView.navigationDelegate = self
+        loadAuthVK()
+    }
+    
+    @IBOutlet weak var webView: WKWebView!//{
+    //        didSet{
+    //            webView.navigationDelegate = self
+    //        }
+    //    }
+    
+    func loadAuthVK() {
+        // конструктор для URL
         var urlConstructor = URLComponents()
-        // устанавливаем схему
         urlConstructor.scheme = "https"
-        // устанавливаем хост
         urlConstructor.host = "oauth.vk.com"
-        // путь
         urlConstructor.path = "/authorize"
-        // параметры для запроса
         urlConstructor.queryItems = [
             URLQueryItem(name: "client_id", value: "7548358"),
             URLQueryItem(name: "display", value: "mobile"),
@@ -40,26 +40,18 @@ class AuthVKViewController: UIViewController {
             URLQueryItem(name: "v", value: "5.120")
         ]
         
-        let request = URLRequest(url: urlConstructor.url!)
+        guard let url = urlConstructor.url  else { return }
+        let request = URLRequest(url: url)
         
         webView.load(request)
-
-        
     }
-    
-    @IBOutlet weak var webView: WKWebView!{
-        didSet{
-            webView.navigationDelegate = self
-        }
-    }
-    
     
 }
-
 
 extension AuthVKViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
+        // проверка на полученый адрес и получение данных из урла
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment  else {
             decisionHandler(.allow)
             return
@@ -76,15 +68,18 @@ extension AuthVKViewController: WKNavigationDelegate {
                 return dict
         }
         
-        guard let token = params["access_token"], let userID = params["user_id"] else { return }
-        
-        session.token = token
-        session.userId = Int(userID)!
-//        print(session.token)
-//        print(session.userId)
-        
-        decisionHandler(.cancel)
-        
-        performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
+        if let token = params["access_token"], let userID = params["user_id"] {
+            session.token = token
+            session.userId = Int(userID)!
+            
+            decisionHandler(.cancel)
+            
+            // переход на контроллер с логином и вход в приложение при успешной авторизации
+            performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
+        } else {
+            decisionHandler(.allow)
+            // просто переход на контроллер с логином при неуспешной авторизации
+            performSegue(withIdentifier: "AuthVKUnsuccessful", sender: nil)
+        }
     }
 }

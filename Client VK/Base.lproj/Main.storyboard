@@ -658,10 +658,12 @@
                     <navigationItem key="navigationItem" id="FHX-e9-fWl"/>
                     <connections>
                         <outlet property="webView" destination="8sa-mR-bhe" id="laF-ly-XlK"/>
-                        <segue destination="enn-Hx-SBd" kind="show" identifier="AuthVKSuccessful" id="3l2-S0-8t4"/>
+                        <segue destination="5g7-ck-w58" kind="unwind" identifier="AuthVKSuccessful" unwindAction="authVKSuccessful​WithSegue:" id="jUH-F9-m2I"/>
+                        <segue destination="5g7-ck-w58" kind="unwind" identifier="AuthVKUnsuccessful" unwindAction="segueToLoginController​WithSegue:" id="STN-i8-gM8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mnX-7N-Vdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5g7-ck-w58" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="875" y="848"/>
         </scene>
@@ -685,9 +687,6 @@
             <point key="canvasLocation" x="2361" y="1209"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="TVB-QS-BS2"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="eye" catalog="system" width="128" height="81"/>
