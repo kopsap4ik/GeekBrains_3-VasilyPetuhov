@@ -32,7 +32,7 @@
 		D9DC48ED2485937A00251429 /* FriendsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC48EC2485937A00251429 /* FriendsPhotosViewController.swift */; };
 		D9E13E2124CAEB3E00370B7E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2024CAEB3E00370B7E /* Session.swift */; };
 		D9E13E2324CAF99100370B7E /* AuthVKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2224CAF99100370B7E /* AuthVKViewController.swift */; };
-		D9E13E2D24D0458B00370B7E /* AuthenticationVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2C24D0458B00370B7E /* AuthenticationVK.swift */; };
+		D9E13E2D24D0458B00370B7E /* GetDataFromVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */; };
 		D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F871DE2477D331000E8684 /* AvatarsView.swift */; };
 		D9FB6E14246D781700F16C31 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */; };
 		D9FB6E17246D7CE600F16C31 /* FriendTableViewController0.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */; };
@@ -67,7 +67,7 @@
 		D9E13E2024CAEB3E00370B7E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		D9E13E2224CAF99100370B7E /* AuthVKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVKViewController.swift; sourceTree = "<group>"; };
 		D9E13E2924D0452400370B7E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		D9E13E2C24D0458B00370B7E /* AuthenticationVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVK.swift; sourceTree = "<group>"; };
+		D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataFromVK.swift; sourceTree = "<group>"; };
 		D9F871DE2477D331000E8684 /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		D9FB6E13246D781700F16C31 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController0.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		D9E13E2B24D0455E00370B7E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D9E13E2C24D0458B00370B7E /* AuthenticationVK.swift */,
+				D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -289,7 +289,7 @@
 				D97587F5247C535800782638 /* NewsTableViewCell.swift in Sources */,
 				D9DC48ED2485937A00251429 /* FriendsPhotosViewController.swift in Sources */,
 				D9E13E2124CAEB3E00370B7E /* Session.swift in Sources */,
-				D9E13E2D24D0458B00370B7E /* AuthenticationVK.swift in Sources */,
+				D9E13E2D24D0458B00370B7E /* GetDataFromVK.swift in Sources */,
 				D98FD8EF246E81A10080057D /* NewGroupTableViewCell.swift in Sources */,
 				D98FD8E5246DCF0E0080057D /* PhotosFriendCollectionViewController.swift in Sources */,
 				D9A5DAC524C5E325006D3E55 /* Groups.swift in Sources */,

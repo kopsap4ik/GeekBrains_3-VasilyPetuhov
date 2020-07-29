@@ -17,6 +17,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
         makeNamesList()
         sortCharacterOfNamesAlphabet()
+        
+        // вывод в консоль json в зависимости от нужды (.namesAndAvatars, .photos, .groups, .searchGroups)
+        GetDataFromVK().loadData(.namesAndAvatars)
     }
     
     let friendsList = [
