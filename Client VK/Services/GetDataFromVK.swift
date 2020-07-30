@@ -57,7 +57,7 @@ class GetDataFromVK {
             //            print("Запрос к API: \(urlConstructor.url!)")
             
             // в замыкании данные, полученные от сервера, мы преобразуем в json
-            let json = try? JSONSerialization.jsonObject(with: data!)
+            guard let data = data, let json = try? JSONSerialization.jsonObject(with: data) else { return }
             print("Вывод json из ответа: \(String(describing: json))")
             
             //            let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
