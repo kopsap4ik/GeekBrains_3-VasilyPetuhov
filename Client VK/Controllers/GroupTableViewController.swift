@@ -10,9 +10,22 @@ import UIKit
 
 class GroupTableViewController: UITableViewController {
     
-    var myGroups = [
-        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
-    ]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // получение данный json в зависимости от требования
+        GetGroupsList().loadData() { [weak self] (complition) in
+            DispatchQueue.main.async {
+                self?.myGroups = complition
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    var myGroups: [Groups] = []
+//    var myGroups = [
+//        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
+//    ]
     
 
     // MARK: - Table view data source
@@ -26,8 +39,16 @@ class GroupTableViewController: UITableViewController {
         
         cell.nameGroupLabel.text = myGroups[indexPath.row].groupName
         
-        let avatar = myGroups[indexPath.row].groupLogo //четко по массиву
-        cell.avatarGroupView.avatarImage.image = avatar
+        if let imgUrl = URL(string: myGroups[indexPath.row].groupLogo) {
+            //let avatar = ImageResource(downloadURL: imgUrl) //работает через Kingfisher
+            //cell.avatarFriendView.avatarImage.kf.setImage(with: avatar) //работает через Kingfisher
+            
+            cell.avatarGroupView.avatarImage.load(url: imgUrl) // работает через extension UIImageView
+        }
+        
+        
+        //let avatar = myGroups[indexPath.row].groupLogo //четко по массиву
+        //cell.avatarGroupView.avatarImage.image = avatar
         
         return cell
     }

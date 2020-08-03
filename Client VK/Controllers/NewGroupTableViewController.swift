@@ -11,13 +11,14 @@ import UIKit
 
 class NewGroupTableViewController: UITableViewController {
 
-    var allGroups = [
-        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1")),
-        Groups(groupName: "SWIFT для iOS", groupLogo: UIImage(named: "group2")),
-        Groups(groupName: "Смешарики", groupLogo: UIImage(named: "group3")),
-        Groups(groupName: "Веселые картинки", groupLogo: UIImage(named: "group4")),
-        Groups(groupName: "Умные истории", groupLogo: UIImage(named: "group5"))
-    ]
+    var allGroups: [Groups] = []
+//    var allGroups = [
+//        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1")),
+//        Groups(groupName: "SWIFT для iOS", groupLogo: UIImage(named: "group2")),
+//        Groups(groupName: "Смешарики", groupLogo: UIImage(named: "group3")),
+//        Groups(groupName: "Веселые картинки", groupLogo: UIImage(named: "group4")),
+//        Groups(groupName: "Умные истории", groupLogo: UIImage(named: "group5"))
+//    ]
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,7 +29,7 @@ class NewGroupTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddGroup", for: indexPath)  as! NewGroupTableViewCell
 
         cell.nameNewGroupLabel.text = allGroups[indexPath.row].groupName
-        cell.avatarNewGroupView.avatarImage.image = allGroups[indexPath.row].groupLogo
+        //cell.avatarNewGroupView.avatarImage.image = allGroups[indexPath.row].groupLogo
 
         return cell
     }

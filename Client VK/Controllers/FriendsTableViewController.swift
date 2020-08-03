@@ -16,9 +16,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // получение данный json в зависимости от требования (.namesAndAvatars, .photos, .groups, .searchGroups)
-        //GetDataFromVK().loadData(.namesAndAvatars){ [weak self] (friendsName) in
+        // получение данный json в зависимости от требования
         GetFriendsList().loadData() { [weak self] (complition) in
             DispatchQueue.main.async {
                 self?.friendsList = complition
