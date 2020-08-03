@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Kingfisher
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
@@ -14,41 +15,21 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // получение данный json в зависимости от требования
+        GetFriendsList().loadData() { [weak self] (complition) in
+            DispatchQueue.main.async {
+                self?.friendsList = complition
+                self?.makeNamesList()
+                self?.sortCharacterOfNamesAlphabet()
+                self?.tableView.reloadData()
+            }
+        }
         searchBar.delegate = self
-        makeNamesList()
-        sortCharacterOfNamesAlphabet()
+        
     }
-    
-    let friendsList = [
-        User(userName: "Коля",
-             userAvatar: (UIImage(named: "person1")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person3"), UIImage(named: "person4"), UIImage(named: "person5")]),
-        User(userName: "Ваня",
-             userAvatar: (UIImage(named: "person2")),
-             userPhotos: [UIImage(named: "person5"), UIImage(named: "person3"), UIImage(named: "person2")]),
-        User(userName: "Василек",
-             userAvatar: (UIImage(named: "person3")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person4")]),
-        User(userName: "Juan",
-             userAvatar: (UIImage(named: "person4")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person3")]),
-        User(userName: "Петров Николай",
-             userAvatar: (UIImage(named: "person5")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person5")]),
-        User(userName: "Аня",
-             userAvatar: (UIImage(named: "person2")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person5")]),
-        User(userName: "Иван",
-             userAvatar: (UIImage(named: "person5")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person3")]),
-        User(userName: "Bob Ib",
-             userAvatar: (UIImage(named: "person3")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person4"), UIImage(named: "person5")]),
-        User(userName: "Анна",
-             userAvatar: (UIImage(named: "person4")),
-             userPhotos: [UIImage(named: "person1"), UIImage(named: "person2"), UIImage(named: "person4"), UIImage(named: "person3"), UIImage(named: "person5")])
-    ]
-    
+
+    var friendsList: [Friends] = []
     var namesListFixed: [String] = [] //эталонный массив с именами для сравнения при поиске
     var namesListModifed: [String] = [] // массив с именами меняется (при поиске) и используется в таблице
     var letersOfNames: [String] = []
@@ -89,27 +70,27 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return namesRows[indexPath.row]
     }
     
-    func getAvatarFriendForCell(_ indexPath: IndexPath) -> UIImage? {
+    func getAvatarFriendForCell(_ indexPath: IndexPath) -> URL? {
         for friend in friendsList {
             let namesRows = getNameFriendForCell(indexPath)
             if friend.userName.contains(namesRows) {
-                return friend.userAvatar
+                return URL(string: friend.userAvatar)
             }
         }
         return nil
     }
     
-    func getPhotosFriend(_ indexPath: IndexPath) -> [UIImage?] {
-        var photos = [UIImage?]()
-        for friend in friendsList {
-            let namesRows = getNameFriendForCell(indexPath)
-            if friend.userName.contains(namesRows) {
-                photos.append(contentsOf: friend.userPhotos)
-                //return friend.userPhotos
+        func getIDFriend(_ indexPath: IndexPath) -> String {
+            var ownerIDs = ""
+            for friend in friendsList {
+                let namesRows = getNameFriendForCell(indexPath)
+                if friend.userName.contains(namesRows) {
+                    ownerIDs = friend.owner_id
+                    //return friend.userPhotos
+                }
             }
+            return ownerIDs
         }
-        return photos
-    }
     
     
     // MARK: - searchBar
@@ -186,7 +167,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         // задать имя пользователя (ищет по буквам для расстановки по секциям) + сортировка по алфавиту
         cell.nameFriendLabel.text = getNameFriendForCell(indexPath)
-        cell.avatarFriendView.avatarImage.image = getAvatarFriendForCell(indexPath)
+
+        //задать аватар для друга (грузит по ссылке: 2 способа)
+        if let imgUrl = getAvatarFriendForCell(indexPath) {
+            //let avatar = ImageResource(downloadURL: imgUrl) //работает через Kingfisher
+            //cell.avatarFriendView.avatarImage.kf.setImage(with: avatar) //работает через Kingfisher
+            
+            cell.avatarFriendView.avatarImage.load(url: imgUrl) // работает через extension UIImageView
+        }
         
         return cell
     }
@@ -202,15 +190,16 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showListUsersPhoto"{
             // ссылка объект на контроллер с которого переход
-            guard let photosFriend = segue.destination as? PhotosFriendCollectionViewController else { return }
+            guard let friend = segue.destination as? PhotosFriendCollectionViewController else { return }
             
             // индекс нажатой ячейки
             if let indexPath = tableView.indexPathForSelectedRow {
-                photosFriend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
-                photosFriend.collectionPhotos = getPhotosFriend(indexPath) // все фотки пользователя
-                
+                friend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
+                friend.userID = getIDFriend(indexPath)
+                //photosFriend.collectionPhotos = getPhotosFriend(indexPath) // все фотки пользователя
             }
         }
     }
+    
     
 }
