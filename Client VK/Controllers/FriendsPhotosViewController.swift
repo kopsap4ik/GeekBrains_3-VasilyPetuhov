@@ -16,12 +16,14 @@ class FriendsPhotosViewController: UIViewController {
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         view.addGestureRecognizer(recognizer)
         
-        photoCurent.image = allPhotos[countCurentPhoto]
+        //photoCurent.load(url: URL(string: allPhotos[countCurentPhoto])!)
+        photoCurent.kf.setImage(with: URL(string: allPhotos[countCurentPhoto])) //работает через Kingfisher (с кэшем)
+
     }
     
     @IBOutlet weak var photoCurent: UIImageView!
     
-    var allPhotos:[UIImage?] = []
+    var allPhotos:[String] = []
     var countCurentPhoto = 0
     
     
@@ -66,9 +68,7 @@ class FriendsPhotosViewController: UIViewController {
             
         default: break
         }
-        photoCurent.image = allPhotos[countCurentPhoto]
-        
+        photoCurent.kf.setImage(with: URL(string: allPhotos[countCurentPhoto]))
     }
-    
     
 }

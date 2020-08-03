@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
@@ -18,15 +18,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         
         // получение данный json в зависимости от требования (.namesAndAvatars, .photos, .groups, .searchGroups)
-        GetDataFromVK().loadData(.namesAndAvatars){ [weak self] (friendsName) in
-            
+        //GetDataFromVK().loadData(.namesAndAvatars){ [weak self] (friendsName) in
+        GetFriendsList().loadData() { [weak self] (complition) in
             DispatchQueue.main.async {
-                self?.friendsList = friendsName
+                self?.friendsList = complition
                 self?.makeNamesList()
                 self?.sortCharacterOfNamesAlphabet()
                 self?.tableView.reloadData()
             }
-            
         }
         searchBar.delegate = self
         
@@ -83,17 +82,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return nil
     }
     
-    //    func getPhotosFriend(_ indexPath: IndexPath) -> [UIImage?] {
-    //        var photos = [UIImage?]()
-    //        for friend in friendsList {
-    //            let namesRows = getNameFriendForCell(indexPath)
-    //            if friend.userName.contains(namesRows) {
-    //                photos.append(contentsOf: friend.userPhotos)
-    //                //return friend.userPhotos
-    //            }
-    //        }
-    //        return photos
-    //    }
+        func getIDFriend(_ indexPath: IndexPath) -> String {
+            var ownerIDs = ""
+            for friend in friendsList {
+                let namesRows = getNameFriendForCell(indexPath)
+                if friend.userName.contains(namesRows) {
+                    ownerIDs = friend.owner_id
+                    //return friend.userPhotos
+                }
+            }
+            return ownerIDs
+        }
     
     
     // MARK: - searchBar
@@ -170,11 +169,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         // задать имя пользователя (ищет по буквам для расстановки по секциям) + сортировка по алфавиту
         cell.nameFriendLabel.text = getNameFriendForCell(indexPath)
-        
+
+        //задать аватар для друга (грузит по ссылке: 2 способа)
         if let imgUrl = getAvatarFriendForCell(indexPath) {
-            let avatar = ImageResource(downloadURL: imgUrl)
-            cell.avatarFriendView.avatarImage.kf.setImage(with: avatar) //getAvatarFriendForCell(indexPath)
-        } else { cell.avatarFriendView.avatarImage.image = UIImage.init(systemName: "person")}
+            //let avatar = ImageResource(downloadURL: imgUrl) //работает через Kingfisher
+            //cell.avatarFriendView.avatarImage.kf.setImage(with: avatar) //работает через Kingfisher
+            
+            cell.avatarFriendView.avatarImage.load(url: imgUrl) // работает через extension UIImageView
+        }
         
         return cell
     }
@@ -190,11 +192,12 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showListUsersPhoto"{
             // ссылка объект на контроллер с которого переход
-            guard let photosFriend = segue.destination as? PhotosFriendCollectionViewController else { return }
+            guard let friend = segue.destination as? PhotosFriendCollectionViewController else { return }
             
             // индекс нажатой ячейки
             if let indexPath = tableView.indexPathForSelectedRow {
-                photosFriend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
+                friend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
+                friend.userID = getIDFriend(indexPath)
                 //photosFriend.collectionPhotos = getPhotosFriend(indexPath) // все фотки пользователя
             }
         }

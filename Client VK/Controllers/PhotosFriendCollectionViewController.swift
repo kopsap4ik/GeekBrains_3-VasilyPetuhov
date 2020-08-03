@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotosFriendCollectionViewController: UICollectionViewController {
     
-    var collectionPhotos: [UIImage?] = []
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        GetPhotosFriend().loadData(owner_id: userID) { [weak self] (complition) in
+            DispatchQueue.main.async {
+                self?.collectionPhotos = complition
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    var userID = ""
+    var collectionPhotos: [String] = []
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionPhotos.count
@@ -19,8 +32,12 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosFriendCell", for: indexPath) as! PhotosFriendCollectionViewCell
         
-        let photo = collectionPhotos[indexPath.row]
-        cell.photosFrienndImage.image = photo
+        if let imgUrl = URL(string: collectionPhotos[indexPath.row]) {
+            let photo = ImageResource(downloadURL: imgUrl) //работает через Kingfisher  (с кэшем)
+            cell.photosFrienndImage.kf.setImage(with: photo) //работает через Kingfisher (с кэшем)
+            
+            //cell.photosFrienndImage.load(url: imgUrl)  // работает через extension UIImageView
+        }
         
         return cell
     }
@@ -36,7 +53,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
             // индекс нажатой ячейки
             if let indexPath = collectionView.indexPathsForSelectedItems?.first {
                 photosFriend.allPhotos = collectionPhotos //фотки
-                photosFriend.countCurentPhoto = indexPath.row // indexPath[0][1] если не использовать ?.first выше
+                photosFriend.countCurentPhoto = indexPath.row // можно указать (indexPath[0][1]) или использовать (?.first) как сделано выше
             }
         }
     }
