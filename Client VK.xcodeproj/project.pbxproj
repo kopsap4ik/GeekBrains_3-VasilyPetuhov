@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935F77B24768C8B00A9AF87 /* LikeControl.swift */; };
 		D941A5772481180500092CC0 /* LoadingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D941A5762481180500092CC0 /* LoadingAnimationView.swift */; };
 		D95A8C9024D0515A000F62DB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E13E2924D0452400370B7E /* WebKit.framework */; };
+		D95A8C9224D2E579000F62DB /* TestLoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95A8C9124D2E579000F62DB /* TestLoadData.swift */; };
 		D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50424557A47005CC3BA /* AppDelegate.swift */; };
 		D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF50624557A47005CC3BA /* SceneDelegate.swift */; };
 		D96DF50C24557A47005CC3BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96DF50A24557A47005CC3BA /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 		D96DF5192455BF19005CC3BA /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DF5182455BF19005CC3BA /* LoginFormController.swift */; };
 		D97587F3247C534400782638 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97587F2247C534400782638 /* NewsTableViewController.swift */; };
 		D97587F5247C535800782638 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97587F4247C535800782638 /* NewsTableViewCell.swift */; };
+		D978C01D24D74DE0004D1075 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D978C01C24D74DE0004D1075 /* Kingfisher */; };
 		D98FD8E5246DCF0E0080057D /* PhotosFriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8E4246DCF0E0080057D /* PhotosFriendCollectionViewController.swift */; };
 		D98FD8E7246DCF3E0080057D /* PhotosFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8E6246DCF3E0080057D /* PhotosFriendCollectionViewCell.swift */; };
 		D98FD8E9246DD3DC0080057D /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8E8246DD3DC0080057D /* GroupTableViewController.swift */; };
@@ -42,6 +44,7 @@
 /* Begin PBXFileReference section */
 		D935F77B24768C8B00A9AF87 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		D941A5762481180500092CC0 /* LoadingAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationView.swift; sourceTree = "<group>"; };
+		D95A8C9124D2E579000F62DB /* TestLoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoadData.swift; sourceTree = "<group>"; };
 		D96DF50124557A47005CC3BA /* Client VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Client VK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96DF50424557A47005CC3BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96DF50624557A47005CC3BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D978C01D24D74DE0004D1075 /* Kingfisher in Frameworks */,
 				D95A8C9024D0515A000F62DB /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */,
+				D95A8C9124D2E579000F62DB /* TestLoadData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -212,6 +217,9 @@
 			dependencies = (
 			);
 			name = "Client VK";
+			packageProductDependencies = (
+				D978C01C24D74DE0004D1075 /* Kingfisher */,
+			);
 			productName = "Client VK";
 			productReference = D96DF50124557A47005CC3BA /* Client VK.app */;
 			productType = "com.apple.product-type.application";
@@ -240,6 +248,9 @@
 				Base,
 			);
 			mainGroup = D96DF4F824557A47005CC3BA;
+			packageReferences = (
+				D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = D96DF50224557A47005CC3BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,6 +291,7 @@
 				D9E13E2324CAF99100370B7E /* AuthVKViewController.swift in Sources */,
 				D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */,
 				D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */,
+				D95A8C9224D2E579000F62DB /* TestLoadData.swift in Sources */,
 				D96DF50524557A47005CC3BA /* AppDelegate.swift in Sources */,
 				D96DF50724557A47005CC3BA /* SceneDelegate.swift in Sources */,
 				D9FB6E14246D781700F16C31 /* FriendsTableViewCell.swift in Sources */,
@@ -494,6 +506,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.14.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D978C01C24D74DE0004D1075 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D96DF4F924557A47005CC3BA /* Project object */;
 }

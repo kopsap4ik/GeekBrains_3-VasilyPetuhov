@@ -11,7 +11,7 @@ import UIKit
 class GroupTableViewController: UITableViewController {
     
     var myGroups = [
-        Group(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
+        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
     ]
     
 

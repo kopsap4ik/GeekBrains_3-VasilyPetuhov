@@ -16,14 +16,11 @@ class AuthVKViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
+        //        removeCookie() //очистка куки, чтобы заново ввести логин и пароль
         loadAuthVK()
     }
     
-    @IBOutlet weak var webView: WKWebView!//{
-    //        didSet{
-    //            webView.navigationDelegate = self
-    //        }
-    //    }
+    @IBOutlet weak var webView: WKWebView!
     
     func loadAuthVK() {
         // конструктор для URL
@@ -44,6 +41,18 @@ class AuthVKViewController: UIViewController {
         let request = URLRequest(url: url)
         
         webView.load(request)
+    }
+    
+    // очистка куки, чтобы авторизоваться в ВК заново
+    func removeCookie() {
+        let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
+        
+        cookieStore.getAllCookies {
+            cookies in
+            for cookie in cookies {
+                cookieStore.delete(cookie)
+            }
+        }
     }
     
 }
@@ -68,18 +77,22 @@ extension AuthVKViewController: WKNavigationDelegate {
                 return dict
         }
         
-        if let token = params["access_token"], let userID = params["user_id"] {
-            session.token = token
-            session.userId = Int(userID)!
+        DispatchQueue.main.async {
             
-            decisionHandler(.cancel)
+            if let token = params["access_token"], let userID = params["user_id"] {
+                self.session.token = token
+                self.session.userId = Int(userID)!
+                
+                decisionHandler(.cancel)
+                
+                // переход на контроллер с логином и вход в приложение при успешной авторизации
+                self.performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
+            } else {
+                decisionHandler(.allow)
+                // просто переход на контроллер с логином при неуспешной авторизации
+                self.performSegue(withIdentifier: "AuthVKUnsuccessful", sender: nil)
+            }
             
-            // переход на контроллер с логином и вход в приложение при успешной авторизации
-            performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
-        } else {
-            decisionHandler(.allow)
-            // просто переход на контроллер с логином при неуспешной авторизации
-            performSegue(withIdentifier: "AuthVKUnsuccessful", sender: nil)
         }
     }
 }
