@@ -16,19 +16,19 @@ struct PhotosResponse: Decodable {
         var items: [Items]
         
         struct Items: Decodable {
-            var album_id: Int
-            var date: Int
-            var id: Int
-            var owner_id: Int
-            var has_tags: Bool
+            //var album_id: Int
+            //var date: Int
+            //var id: Int
+            //var owner_id: Int
+            //var has_tags: Bool
             var sizes: [Sizes]
-            var text: String
+            //var text: String
             
             struct Sizes: Decodable {
-                var height: Int
+                //var height: Int
                 var url: String
-                var type: String
-                var width: Int
+                //var type: String
+                //var width: Int
             }
         }
     }

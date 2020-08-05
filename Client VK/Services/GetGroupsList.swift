@@ -16,12 +16,32 @@ struct GroupsResponse: Decodable {
         var items: [Items]
         
         struct Items: Decodable {
-            var id: Int
             var name: String
-            var screen_name: String
-            var photo_50: String
+            var logo: String  // уже тут нужно писать желаемые названия
+            
+            // не нужные в приложении поля, которые есть в json-е
+            //var id: Int
+            //var screen_name: String
+            //var photo_50: String
+            
+            // enum и init нужны если нужно иметь другие названия переменных в отличии от даннных в json
+            // например: logo = "photo_50" (я хочу: logo, а в jsone это: photo_50 )
+            // но все равно нужно указать другие значения, например: name (без уточнения)
+            enum CodingKeys: String, CodingKey {
+                case name
+                case logo = "photo_50"
+            }
+            
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(String.self, forKey: .logo)
+            }
         }
     }
+    
+    
+    
 }
 
 class GetGroupsList {
@@ -48,7 +68,7 @@ class GetGroupsList {
         
         // задача для запуска
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-                        print("Запрос к API: \(urlConstructor.url!)")
+            print("Запрос к API: \(urlConstructor.url!)")
             
             // в замыкании данные, полученные от сервера, мы преобразуем в json
             guard let data = data else { return }
@@ -58,8 +78,8 @@ class GetGroupsList {
                 var fullGroupList: [Groups] = []
                 for i in 0...arrayGroups.response.items.count-1 {
                     let name = ((arrayGroups.response.items[i].name))
-                    let avatar = arrayGroups.response.items[i].photo_50
-                    fullGroupList.append(Groups.init(groupName: name, groupLogo: avatar))
+                    let logo = arrayGroups.response.items[i].logo
+                    fullGroupList.append(Groups.init(groupName: name, groupLogo: logo))
                 }
                 complition(fullGroupList)
             } catch let error {

@@ -17,9 +17,27 @@ struct FriendsResponse: Decodable {
         
         struct Items: Decodable {
             var id: Int
-            var first_name: String
-            var last_name: String
-            var photo_50: String
+            var firstName: String // уже тут нужно писать желаемые названия
+            var lastName: String  // уже тут нужно писать желаемые названия
+            var avatar: String  // уже тут нужно писать желаемые названия
+            
+            // enum и init нужны если нужно иметь другие названия переменных в отличии от даннных в json
+            // например: logo = "photo_50" (я хочу: logo, а в jsone это: photo_50 )
+            // но все равно нужно указать другие значения, например: id (без уточнения)
+            enum CodingKeys: String, CodingKey {
+                case id
+                case firstName = "first_name"
+                case lastName = "last_name"
+                case avatar  = "photo_50"
+            }
+            
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                id = try container.decode(Int.self, forKey: .id)
+                firstName = try container.decode(String.self, forKey: .firstName)
+                lastName = try container.decode(String.self, forKey: .lastName)
+                avatar = try container.decode(String.self, forKey: .avatar)
+            }
         }
     }
 }
@@ -57,8 +75,8 @@ class GetFriendsList {
                 let arrayFriends = try JSONDecoder().decode(FriendsResponse.self, from: data)
                 var fullNamesFriends: [Friends] = []
                 for i in 0...arrayFriends.response.items.count-1 {
-                    let name = ((arrayFriends.response.items[i].first_name) + " " + (arrayFriends.response.items[i].last_name))
-                    let avatar = arrayFriends.response.items[i].photo_50
+                    let name = ((arrayFriends.response.items[i].firstName) + " " + (arrayFriends.response.items[i].lastName))
+                    let avatar = arrayFriends.response.items[i].avatar
                     let id = String(arrayFriends.response.items[i].id)
                     fullNamesFriends.append(Friends.init(userName: name, userAvatar: avatar, owner_id: id))
                 }
