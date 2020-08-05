@@ -13,9 +13,9 @@ struct FriendsResponse: Decodable {
     
     struct Response: Decodable {
         var count: Int
-        var items: [Items]
+        var items: [Item]
         
-        struct Items: Decodable {
+        struct Item: Decodable {
             var id: Int
             var firstName: String // уже тут нужно писать желаемые названия
             var lastName: String  // уже тут нужно писать желаемые названия

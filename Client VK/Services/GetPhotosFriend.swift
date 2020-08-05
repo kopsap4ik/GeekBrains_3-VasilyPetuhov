@@ -13,9 +13,9 @@ struct PhotosResponse: Decodable {
     
     struct Response: Decodable {
         var count: Int
-        var items: [Items]
+        var items: [Item]
         
-        struct Items: Decodable {
+        struct Item: Decodable {
             //var album_id: Int
             //var date: Int
             //var id: Int

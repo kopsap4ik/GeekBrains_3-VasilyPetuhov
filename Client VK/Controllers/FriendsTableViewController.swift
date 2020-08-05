@@ -16,6 +16,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Мои друзья"
+        
         // получение данный json в зависимости от требования
         GetFriendsList().loadData() { [weak self] (complition) in
             DispatchQueue.main.async {
@@ -196,7 +198,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             if let indexPath = tableView.indexPathForSelectedRow {
                 friend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
                 friend.userID = getIDFriend(indexPath)
-                //photosFriend.collectionPhotos = getPhotosFriend(indexPath) // все фотки пользователя
             }
         }
     }

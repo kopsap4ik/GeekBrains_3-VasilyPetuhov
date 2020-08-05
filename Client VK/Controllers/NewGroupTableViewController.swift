@@ -9,27 +9,67 @@
 import UIKit
 
 
-class NewGroupTableViewController: UITableViewController {
+class NewGroupTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    var allGroups: [Groups] = []
-//    var allGroups = [
-//        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1")),
-//        Groups(groupName: "SWIFT для iOS", groupLogo: UIImage(named: "group2")),
-//        Groups(groupName: "Смешарики", groupLogo: UIImage(named: "group3")),
-//        Groups(groupName: "Веселые картинки", groupLogo: UIImage(named: "group4")),
-//        Groups(groupName: "Умные истории", groupLogo: UIImage(named: "group5"))
-//    ]
+    
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        //панель поиска через код
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Введите запрос для поиска"
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.obscuresBackgroundDuringPresentation = false // не скрывать таблицу под поиском (размытие), иначе не будет работать сегвей из поиска
+        
+        //автоматическое открытие клавиатуры для поиска
+        searchController.isActive = true
+        DispatchQueue.main.async {
+          self.searchController.searchBar.becomeFirstResponder()
+        }
+
+    }
+
+
+    var searchController:UISearchController!
+    
+    var GroupsList: [Groups] = []
+    
+    // MARK: - Functions
+    
+    func searchGroup(searchText: String) {
+        // получение данный json в зависимости от требования
+        SearchGroup().loadData(searchText: searchText) { [weak self] (complition) in
+            DispatchQueue.main.async {
+                //print(complition)
+                self?.GroupsList = complition
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            searchGroup(searchText: searchText)
+        }
+    }
+    
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGroups.count
+        return GroupsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddGroup", for: indexPath)  as! NewGroupTableViewCell
 
-        cell.nameNewGroupLabel.text = allGroups[indexPath.row].groupName
-        //cell.avatarNewGroupView.avatarImage.image = allGroups[indexPath.row].groupLogo
+        cell.nameNewGroupLabel.text = GroupsList[indexPath.row].groupName
+        
+        if let imgUrl = URL(string: GroupsList[indexPath.row].groupLogo) {
+            cell.avatarNewGroupView.avatarImage.load(url: imgUrl) // работает через extension UIImageView
+        }
 
         return cell
     }

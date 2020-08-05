@@ -38,7 +38,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMo-Ac-YEI">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMo-Ac-YEI">
                                         <rect key="frame" x="50" y="485" width="314" height="34"/>
                                         <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
@@ -441,7 +441,7 @@
             </objects>
             <point key="canvasLocation" x="3089.8550724637685" y="1208.7053571428571"/>
         </scene>
-        <!--Добавить группу-->
+        <!--New Group Table View Controller-->
         <scene sceneID="dRc-cH-Qoa">
             <objects>
                 <tableViewController id="eqN-r0-WPg" customClass="NewGroupTableViewController" customModule="Client_VK" customModuleProvider="target" sceneMemberID="viewController">
@@ -487,7 +487,7 @@
                             <outlet property="delegate" destination="eqN-r0-WPg" id="3k4-Yf-Io9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Добавить группу" id="PcD-Dm-1TL"/>
+                    <navigationItem key="navigationItem" id="PcD-Dm-1TL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vux-eT-dkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="cjS-Ld-zUO" userLabel="Exit" sceneMemberID="exit"/>

@@ -75,7 +75,7 @@ class GroupTableViewController: UITableViewController {
             // проверка индекса ячейки
             if let indexPath = newGroupFromController.tableView.indexPathForSelectedRow {
                 //добавить новой группы в мои группы из общего списка групп
-                let newGroup = newGroupFromController.allGroups[indexPath.row]
+                let newGroup = newGroupFromController.GroupsList[indexPath.row]
                 
                 // проверка что группа уже в списке (нужен Equatable)
                 guard !myGroups.contains(newGroup) else { return }

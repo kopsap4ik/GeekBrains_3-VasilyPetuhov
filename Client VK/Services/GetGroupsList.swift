@@ -13,9 +13,9 @@ struct GroupsResponse: Decodable {
     
     struct Response: Decodable {
         var count: Int
-        var items: [Items]
+        var items: [Item]
         
-        struct Items: Decodable {
+        struct Item: Decodable {
             var name: String
             var logo: String  // уже тут нужно писать желаемые названия
             
@@ -68,7 +68,7 @@ class GetGroupsList {
         
         // задача для запуска
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            print("Запрос к API: \(urlConstructor.url!)")
+            //print("Запрос к API: \(urlConstructor.url!)")
             
             // в замыкании данные, полученные от сервера, мы преобразуем в json
             guard let data = data else { return }
