@@ -7,11 +7,30 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class Session {
     private init() {}
     static let instance = Session()
     
-    var token = "" // хранение токена в VK
-    var userId = 0 // хранение идентификатора пользователя VK
+    // хранение токена в VK
+    var token: String {
+        get{
+            return KeychainWrapper.standard.string(forKey: "tokenVK") ?? ""
+        }
+        set{
+            KeychainWrapper.standard.set(newValue, forKey: "tokenVK")
+        }
+    }
+    
+    // хранение идентификатора пользователя VK
+    var userId: Int {
+        get {
+            return KeychainWrapper.standard.integer(forKey: "userId") ?? 0
+        }
+        set{
+            KeychainWrapper.standard.set(newValue, forKey: "userId")
+        }
+    }
+    
 }

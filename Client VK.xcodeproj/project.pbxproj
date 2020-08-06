@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D9008E1424DB39CA0030A376 /* SearchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9008E1324DB39CA0030A376 /* SearchGroup.swift */; };
+		D9008E1724DBF7B70030A376 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D9008E1624DBF7B70030A376 /* RealmSwift */; };
+		D9008E1924DC1E680030A376 /* RealmOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9008E1824DC1E670030A376 /* RealmOperations.swift */; };
+		D9008E1B24DC20F00030A376 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9008E1A24DC20F00030A376 /* Photo.swift */; };
+		D9008E1E24DC25A90030A376 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = D9008E1D24DC25A90030A376 /* SwiftKeychainWrapper */; };
 		D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935F77B24768C8B00A9AF87 /* LikeControl.swift */; };
 		D941A5772481180500092CC0 /* LoadingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D941A5762481180500092CC0 /* LoadingAnimationView.swift */; };
 		D95A8C9024D0515A000F62DB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E13E2924D0452400370B7E /* WebKit.framework */; };
@@ -31,8 +35,8 @@
 		D98FD8EB246DD4270080057D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */; };
 		D98FD8ED246E818B0080057D /* NewGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */; };
 		D98FD8EF246E81A10080057D /* NewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */; };
-		D9A5DAC324C5E237006D3E55 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DAC224C5E237006D3E55 /* Friends.swift */; };
-		D9A5DAC524C5E325006D3E55 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DAC424C5E325006D3E55 /* Groups.swift */; };
+		D9A5DAC324C5E237006D3E55 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DAC224C5E237006D3E55 /* Friend.swift */; };
+		D9A5DAC524C5E325006D3E55 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DAC424C5E325006D3E55 /* Group.swift */; };
 		D9D11C8724C7334600525073 /* PostNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D11C8624C7334600525073 /* PostNews.swift */; };
 		D9D11C8924C86FC000525073 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D11C8824C86FC000525073 /* FriendsTableViewController.swift */; };
 		D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC48EA2485232800251429 /* CloudAnimationView.swift */; };
@@ -48,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		D9008E1324DB39CA0030A376 /* SearchGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroup.swift; sourceTree = "<group>"; };
+		D9008E1824DC1E670030A376 /* RealmOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmOperations.swift; sourceTree = "<group>"; };
+		D9008E1A24DC20F00030A376 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D935F77B24768C8B00A9AF87 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		D941A5762481180500092CC0 /* LoadingAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationView.swift; sourceTree = "<group>"; };
 		D95A8C9124D2E579000F62DB /* TestLoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoadData.swift; sourceTree = "<group>"; };
@@ -71,8 +77,8 @@
 		D98FD8EA246DD4270080057D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D98FD8EC246E818B0080057D /* NewGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewController.swift; sourceTree = "<group>"; };
 		D98FD8EE246E81A10080057D /* NewGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupTableViewCell.swift; sourceTree = "<group>"; };
-		D9A5DAC224C5E237006D3E55 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
-		D9A5DAC424C5E325006D3E55 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		D9A5DAC224C5E237006D3E55 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D9A5DAC424C5E325006D3E55 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D9D11C8624C7334600525073 /* PostNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNews.swift; sourceTree = "<group>"; };
 		D9D11C8824C86FC000525073 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		D9DC48EA2485232800251429 /* CloudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAnimationView.swift; sourceTree = "<group>"; };
@@ -92,7 +98,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9008E1724DBF7B70030A376 /* RealmSwift in Frameworks */,
 				D978C01D24D74DE0004D1075 /* Kingfisher in Frameworks */,
+				D9008E1E24DC25A90030A376 /* SwiftKeychainWrapper in Frameworks */,
 				D95A8C9024D0515A000F62DB /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +143,8 @@
 		D97587F0247C530600782638 /* oldTest files */ = {
 			isa = PBXGroup;
 			children = (
+				D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */,
+				D95A8C9124D2E579000F62DB /* TestLoadData.swift */,
 				D9FB6E16246D7CE600F16C31 /* FriendTableViewController0.swift */,
 			);
 			path = "oldTest files";
@@ -143,8 +153,9 @@
 		D9A5DAC124C5E21E006D3E55 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D9A5DAC224C5E237006D3E55 /* Friends.swift */,
-				D9A5DAC424C5E325006D3E55 /* Groups.swift */,
+				D9A5DAC224C5E237006D3E55 /* Friend.swift */,
+				D9A5DAC424C5E325006D3E55 /* Group.swift */,
+				D9008E1A24DC20F00030A376 /* Photo.swift */,
 				D9D11C8624C7334600525073 /* PostNews.swift */,
 				D9E13E2024CAEB3E00370B7E /* Session.swift */,
 			);
@@ -193,8 +204,7 @@
 				D978C02224D807F8004D1075 /* GetPhotosFriend.swift */,
 				D978C02424D827A4004D1075 /* GetGroupsList.swift */,
 				D9008E1324DB39CA0030A376 /* SearchGroup.swift */,
-				D9E13E2C24D0458B00370B7E /* GetDataFromVK.swift */,
-				D95A8C9124D2E579000F62DB /* TestLoadData.swift */,
+				D9008E1824DC1E670030A376 /* RealmOperations.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -234,6 +244,8 @@
 			name = "Client VK";
 			packageProductDependencies = (
 				D978C01C24D74DE0004D1075 /* Kingfisher */,
+				D9008E1624DBF7B70030A376 /* RealmSwift */,
+				D9008E1D24DC25A90030A376 /* SwiftKeychainWrapper */,
 			);
 			productName = "Client VK";
 			productReference = D96DF50124557A47005CC3BA /* Client VK.app */;
@@ -265,6 +277,8 @@
 			mainGroup = D96DF4F824557A47005CC3BA;
 			packageReferences = (
 				D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D9008E1524DBF7B70030A376 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				D9008E1C24DC25A90030A376 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = D96DF50224557A47005CC3BA /* Products */;
 			projectDirPath = "";
@@ -298,15 +312,17 @@
 				D935F77C24768C8B00A9AF87 /* LikeControl.swift in Sources */,
 				D9D11C8924C86FC000525073 /* FriendsTableViewController.swift in Sources */,
 				D96DF5192455BF19005CC3BA /* LoginFormController.swift in Sources */,
-				D9A5DAC324C5E237006D3E55 /* Friends.swift in Sources */,
+				D9A5DAC324C5E237006D3E55 /* Friend.swift in Sources */,
 				D978C02124D8059F004D1075 /* GetFriendsList.swift in Sources */,
 				D978C02324D807F8004D1075 /* GetPhotosFriend.swift in Sources */,
 				D978C02524D827A4004D1075 /* GetGroupsList.swift in Sources */,
 				D98FD8ED246E818B0080057D /* NewGroupTableViewController.swift in Sources */,
+				D9008E1B24DC20F00030A376 /* Photo.swift in Sources */,
 				D9FB6E17246D7CE600F16C31 /* FriendTableViewController0.swift in Sources */,
 				D9FC1D5B2489392700AC8217 /* CustomNavigationController.swift in Sources */,
 				D941A5772481180500092CC0 /* LoadingAnimationView.swift in Sources */,
 				D9E13E2324CAF99100370B7E /* AuthVKViewController.swift in Sources */,
+				D9008E1924DC1E680030A376 /* RealmOperations.swift in Sources */,
 				D9F871DF2477D331000E8684 /* AvatarsView.swift in Sources */,
 				D9008E1424DB39CA0030A376 /* SearchGroup.swift in Sources */,
 				D9DC48EB2485232800251429 /* CloudAnimationView.swift in Sources */,
@@ -324,7 +340,7 @@
 				D9E13E2D24D0458B00370B7E /* GetDataFromVK.swift in Sources */,
 				D98FD8EF246E81A10080057D /* NewGroupTableViewCell.swift in Sources */,
 				D98FD8E5246DCF0E0080057D /* PhotosFriendCollectionViewController.swift in Sources */,
-				D9A5DAC524C5E325006D3E55 /* Groups.swift in Sources */,
+				D9A5DAC524C5E325006D3E55 /* Group.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +544,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D9008E1524DBF7B70030A376 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.3;
+			};
+		};
+		D9008E1C24DC25A90030A376 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralcr/SwiftKeychainWrapper";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -539,6 +571,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D9008E1624DBF7B70030A376 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9008E1524DBF7B70030A376 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		D9008E1D24DC25A90030A376 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9008E1C24DC25A90030A376 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		D978C01C24D74DE0004D1075 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D978C01B24D74DE0004D1075 /* XCRemoteSwiftPackageReference "Kingfisher" */;

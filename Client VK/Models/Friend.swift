@@ -8,13 +8,31 @@
 
 
 import UIKit
+import RealmSwift
 
-struct Friends {
-    var userName: String
-    var userAvatar: String
-    //var userPhotos: [UIImage?]
-    var owner_id: String
+class Friend: Object {
+    @objc dynamic var userName: String = ""
+    @objc dynamic var userAvatar: String  = ""
+    @objc dynamic var owner_id: String  = ""
+    
+    init(userName:String, userAvatar:String, owner_id:String) {
+        self.userName = userName
+        self.userAvatar = userAvatar
+        self.owner_id = owner_id
+    }
+    
+    // этот инит обязателен для Object
+    required init() {
+        super.init()
+    }
 }
+
+//struct Friends {
+//    var userName: String
+//    var userAvatar: String
+//    //var userPhotos: [UIImage?]
+//    var owner_id: String
+//}
 
 //    let friendsList = [
 //        User(userName: "Коля",

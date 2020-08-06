@@ -11,11 +11,20 @@ import UIKit
 
 class NewGroupTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        setupSearchBar()
+    
+    }
+
+    var searchController:UISearchController!
+    
+    var GroupsList: [Group] = []
+    
+    // MARK: - Functions
+    
+    func setupSearchBar() {
         //панель поиска через код
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -28,17 +37,9 @@ class NewGroupTableViewController: UITableViewController, UISearchResultsUpdatin
         DispatchQueue.main.async {
           self.searchController.searchBar.becomeFirstResponder()
         }
-
     }
-
-
-    var searchController:UISearchController!
     
-    var GroupsList: [Groups] = []
-    
-    // MARK: - Functions
-    
-    func searchGroup(searchText: String) {
+    func searchGroupVK(searchText: String) {
         // получение данный json в зависимости от требования
         SearchGroup().loadData(searchText: searchText) { [weak self] (complition) in
             DispatchQueue.main.async {
@@ -49,10 +50,9 @@ class NewGroupTableViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
     
-    
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            searchGroup(searchText: searchText)
+            searchGroupVK(searchText: searchText)
         }
     }
     

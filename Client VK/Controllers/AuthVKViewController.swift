@@ -77,7 +77,7 @@ extension AuthVKViewController: WKNavigationDelegate {
                 return dict
         }
         
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             
             if let token = params["access_token"], let userID = params["user_id"] {
                 self.session.token = token
@@ -93,6 +93,6 @@ extension AuthVKViewController: WKNavigationDelegate {
                 self.performSegue(withIdentifier: "AuthVKUnsuccessful", sender: nil)
             }
             
-        }
+       // }
     }
 }

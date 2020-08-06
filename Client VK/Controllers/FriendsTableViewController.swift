@@ -20,18 +20,16 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         // получение данный json в зависимости от требования
         GetFriendsList().loadData() { [weak self] (complition) in
-            DispatchQueue.main.async {
-                self?.friendsList = complition
-                self?.makeNamesList()
-                self?.sortCharacterOfNamesAlphabet()
-                self?.tableView.reloadData()
-            }
+            self?.friendsList = complition
+            self?.makeNamesList()
+            self?.sortCharacterOfNamesAlphabet()
+            self?.tableView.reloadData()
         }
         searchBar.delegate = self
         
     }
-
-    var friendsList: [Friends] = []
+    
+    var friendsList: [Friend] = []
     var namesListFixed: [String] = [] //эталонный массив с именами для сравнения при поиске
     var namesListModifed: [String] = [] // массив с именами меняется (при поиске) и используется в таблице
     var letersOfNames: [String] = []
@@ -82,17 +80,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return nil
     }
     
-        func getIDFriend(_ indexPath: IndexPath) -> String {
-            var ownerIDs = ""
-            for friend in friendsList {
-                let namesRows = getNameFriendForCell(indexPath)
-                if friend.userName.contains(namesRows) {
-                    ownerIDs = friend.owner_id
-                    //return friend.userPhotos
-                }
+    func getIDFriend(_ indexPath: IndexPath) -> String {
+        var ownerIDs = ""
+        for friend in friendsList {
+            let namesRows = getNameFriendForCell(indexPath)
+            if friend.userName.contains(namesRows) {
+                ownerIDs = friend.owner_id
+                //return friend.userPhotos
             }
-            return ownerIDs
         }
+        return ownerIDs
+    }
     
     
     // MARK: - searchBar
@@ -169,7 +167,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         // задать имя пользователя (ищет по буквам для расстановки по секциям) + сортировка по алфавиту
         cell.nameFriendLabel.text = getNameFriendForCell(indexPath)
-
+        
         //задать аватар для друга (грузит по ссылке: 2 способа)
         if let imgUrl = getAvatarFriendForCell(indexPath) {
             //let avatar = ImageResource(downloadURL: imgUrl) //работает через Kingfisher

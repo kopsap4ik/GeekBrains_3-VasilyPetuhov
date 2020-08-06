@@ -22,7 +22,7 @@ class GroupTableViewController: UITableViewController {
         }
     }
     
-    var myGroups: [Groups] = []
+    var myGroups: [Group] = []
 //    var myGroups = [
 //        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
 //    ]
@@ -80,6 +80,8 @@ class GroupTableViewController: UITableViewController {
                 // проверка что группа уже в списке (нужен Equatable)
                 guard !myGroups.contains(newGroup) else { return }
                 myGroups.append(newGroup)
+                
+                RealmOperations().saveGroupsToRealm(myGroups)
                 
                 tableView.reloadData()
             }

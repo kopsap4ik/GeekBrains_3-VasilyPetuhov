@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct GroupsResponse: Decodable {
+struct GroupsResponse:  Decodable {
     var response: Response
     
     struct Response: Decodable {
@@ -39,15 +40,13 @@ struct GroupsResponse: Decodable {
             }
         }
     }
-    
-    
-    
+
 }
 
 class GetGroupsList {
     
     //данные для авторизации в ВК
-    func loadData(complition: @escaping ([Groups]) -> Void ) {
+    func loadData(complition: @escaping ([Group]) -> Void ) {
         
         // Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
@@ -75,13 +74,18 @@ class GetGroupsList {
             
             do {
                 let arrayGroups = try JSONDecoder().decode(GroupsResponse.self, from: data)
-                var fullGroupList: [Groups] = []
+                var grougList: [Group] = []
                 for i in 0...arrayGroups.response.items.count-1 {
                     let name = ((arrayGroups.response.items[i].name))
                     let logo = arrayGroups.response.items[i].logo
-                    fullGroupList.append(Groups.init(groupName: name, groupLogo: logo))
+                    grougList.append(Group.init(groupName: name, groupLogo: logo))
                 }
-                complition(fullGroupList)
+                
+                DispatchQueue.main.async {
+                    RealmOperations().saveGroupsToRealm(grougList) // так работает верно
+                    complition(grougList)
+                }
+                
             } catch let error {
                 print(error)
                 complition([])
@@ -90,5 +94,16 @@ class GetGroupsList {
         task.resume()
         
     }
+    
+//    func saveGroupsToRealm(_ grougList: [Group]) {
+//        do {
+//            let realm = try Realm()
+//            try realm.write{
+//                realm.add(grougList)
+//            }
+//        } catch {
+//            print(error)
+//        }
+//    }
     
 }

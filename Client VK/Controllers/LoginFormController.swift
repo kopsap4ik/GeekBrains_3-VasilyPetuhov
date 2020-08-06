@@ -23,6 +23,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // * делегаты для переноса фокуса на следующее поле ввода
         self.loginTextField.delegate = self
         self.passwordTextField.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +34,12 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // Второе — когда она пропадает
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
+            
+//        if session.token != "" {
+//            print(session.token)
+//            performSegue(withIdentifier: "login", sender: nil)
+        
+        //}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,7 +112,6 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // проверка и действия
     }
     
- //   var friendsList: [Friends] = []
     @IBAction func authVKSuccessful​(segue:UIStoryboardSegue) {
         if segue.identifier == "AuthVKSuccessful"{
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { //задержка, чтобы отработал контроллер с логином (иначе краш)

@@ -39,7 +39,7 @@ import Foundation
 class SearchGroup {
     
     //данные для авторизации в ВК
-    func loadData(searchText:String, complition: @escaping ([Groups]) -> Void ) {
+    func loadData(searchText:String, complition: @escaping ([Group]) -> Void ) {
         
         // Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
@@ -67,11 +67,11 @@ class SearchGroup {
 
             do {
                 let arrayGroups = try JSONDecoder().decode(GroupsResponse.self, from: data)
-                var searchGroup: [Groups] = []
+                var searchGroup: [Group] = []
                 for i in 0...arrayGroups.response.items.count-1 {
                     let name = ((arrayGroups.response.items[i].name))
                     let logo = arrayGroups.response.items[i].logo
-                    searchGroup.append(Groups.init(groupName: name, groupLogo: logo))
+                    searchGroup.append(Group.init(groupName: name, groupLogo: logo))
                 }
                 complition(searchGroup)
             } catch let error {

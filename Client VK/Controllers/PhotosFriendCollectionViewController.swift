@@ -23,7 +23,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     }
     
     var userID = ""
-    var collectionPhotos: [String] = []
+    var collectionPhotos: [Photo] = []
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionPhotos.count
@@ -32,7 +32,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosFriendCell", for: indexPath) as! PhotosFriendCollectionViewCell
         
-        if let imgUrl = URL(string: collectionPhotos[indexPath.row]) {
+        if let imgUrl = URL(string: collectionPhotos[indexPath.row].photo) {
             let photo = ImageResource(downloadURL: imgUrl) //работает через Kingfisher  (с кэшем)
             cell.photosFrienndImage.kf.setImage(with: photo) //работает через Kingfisher (с кэшем)
             

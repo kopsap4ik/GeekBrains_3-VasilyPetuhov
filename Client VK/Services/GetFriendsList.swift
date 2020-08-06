@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct FriendsResponse: Decodable {
     var response: Response
@@ -45,7 +46,7 @@ struct FriendsResponse: Decodable {
 class GetFriendsList {
     
     //данные для авторизации в ВК
-    func loadData(complition: @escaping ([Friends]) -> Void ) {
+    func loadData(complition: @escaping ([Friend]) -> Void ) {
         
         // Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
@@ -73,21 +74,37 @@ class GetFriendsList {
             
             do {
                 let arrayFriends = try JSONDecoder().decode(FriendsResponse.self, from: data)
-                var fullNamesFriends: [Friends] = []
+                var friendList: [Friend] = []
                 for i in 0...arrayFriends.response.items.count-1 {
                     let name = ((arrayFriends.response.items[i].firstName) + " " + (arrayFriends.response.items[i].lastName))
                     let avatar = arrayFriends.response.items[i].avatar
                     let id = String(arrayFriends.response.items[i].id)
-                    fullNamesFriends.append(Friends.init(userName: name, userAvatar: avatar, owner_id: id))
+                    friendList.append(Friend.init(userName: name, userAvatar: avatar, owner_id: id))
                 }
-                complition(fullNamesFriends)
+                
+                DispatchQueue.main.async {
+                    RealmOperations().saveFriendsToRealm(friendList) // так работает верно
+                    complition(friendList)
+                }
+
             } catch let error {
                 print(error)
                 complition([])
             }
         }
         task.resume()
-        
     }
     
+//    func saveFriendsToRealm(_ friendList: [Friend]) {
+//        do {
+//            let realm = try Realm()
+//            try realm.write{
+//                realm.add(friendList)
+//            }
+//        } catch {
+//            print(error)
+//        }
+//    }
+    
+
 }
