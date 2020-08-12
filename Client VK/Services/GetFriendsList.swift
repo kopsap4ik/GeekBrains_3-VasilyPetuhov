@@ -18,26 +18,32 @@ struct FriendsResponse: Decodable {
         
         struct Item: Decodable {
             var id: Int
-            var firstName: String // уже тут нужно писать желаемые названия
-            var lastName: String  // уже тут нужно писать желаемые названия
-            var avatar: String  // уже тут нужно писать желаемые названия
+            var firstName: String
+            var lastName: String
+            var avatar: String
+            var deactivated: String?
             
             // enum и init нужны если нужно иметь другие названия переменных в отличии от даннных в json
             // например: logo = "photo_50" (я хочу: logo, а в jsone это: photo_50 )
             // но все равно нужно указать другие значения, например: id (без уточнения)
-            enum CodingKeys: String, CodingKey {
+            private enum CodingKeys: String, CodingKey {
                 case id
                 case firstName = "first_name"
                 case lastName = "last_name"
                 case avatar  = "photo_50"
+                case deactivated
             }
             
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+                
                 id = try container.decode(Int.self, forKey: .id)
                 firstName = try container.decode(String.self, forKey: .firstName)
                 lastName = try container.decode(String.self, forKey: .lastName)
                 avatar = try container.decode(String.self, forKey: .avatar)
+                
+                // необязательный ключ (может отсутсвовать)
+                deactivated = try? container.decodeIfPresent(String.self, forKey: .deactivated)
             }
         }
     }
@@ -46,7 +52,7 @@ struct FriendsResponse: Decodable {
 class GetFriendsList {
     
     //данные для авторизации в ВК
-    func loadData(complition: @escaping ([Friend]) -> Void ) {
+    func loadData(complition: @escaping () -> Void ) {
         
         // Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
@@ -67,7 +73,7 @@ class GetFriendsList {
         
         // задача для запуска
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            //            print("Запрос к API: \(urlConstructor.url!)")
+            //print("Запрос к API: \(urlConstructor.url!)")
             
             // в замыкании данные, полученные от сервера, мы преобразуем в json
             guard let data = data else { return }
@@ -76,35 +82,38 @@ class GetFriendsList {
                 let arrayFriends = try JSONDecoder().decode(FriendsResponse.self, from: data)
                 var friendList: [Friend] = []
                 for i in 0...arrayFriends.response.items.count-1 {
-                    let name = ((arrayFriends.response.items[i].firstName) + " " + (arrayFriends.response.items[i].lastName))
-                    let avatar = arrayFriends.response.items[i].avatar
-                    let id = String(arrayFriends.response.items[i].id)
-                    friendList.append(Friend.init(userName: name, userAvatar: avatar, owner_id: id))
+                    // не отображаем удаленных и заблокированных друзей
+                    if arrayFriends.response.items[i].deactivated == nil {
+                        let name = ((arrayFriends.response.items[i].firstName) + " " + (arrayFriends.response.items[i].lastName))
+                        let avatar = arrayFriends.response.items[i].avatar
+                        let id = String(arrayFriends.response.items[i].id)
+                        friendList.append(Friend.init(userName: name, userAvatar: avatar, ownerID: id))
+                    }
                 }
                 
                 DispatchQueue.main.async {
-                    RealmOperations().saveFriendsToRealm(friendList) // так работает верно
-                    complition(friendList)
+                    RealmOperations().saveFriendsToRealm(friendList)
+                    complition()
                 }
-
+                
             } catch let error {
                 print(error)
-                complition([])
+                complition()
             }
         }
         task.resume()
     }
     
-//    func saveFriendsToRealm(_ friendList: [Friend]) {
-//        do {
-//            let realm = try Realm()
-//            try realm.write{
-//                realm.add(friendList)
-//            }
-//        } catch {
-//            print(error)
-//        }
-//    }
+    //    func saveFriendsToRealm(_ friendList: [Friend]) {
+    //        do {
+    //            let realm = try Realm()
+    //            try realm.write{
+    //                realm.add(friendList)
+    //            }
+    //        } catch {
+    //            print(error)
+    //        }
+    //    }
     
-
+    
 }

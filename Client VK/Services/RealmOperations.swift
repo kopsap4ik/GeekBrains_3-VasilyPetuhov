@@ -10,23 +10,36 @@ import Foundation
 import RealmSwift
 
 class RealmOperations {
-    
+
     func saveFriendsToRealm(_ friendList: [Friend]) {
         do {
             let realm = try Realm()
             try realm.write{
-                realm.add(friendList)
+                let oldFriendList = realm.objects(Friend.self) // список существующих записей
+                realm.delete(oldFriendList) // удалить старые данные
+                realm.add(friendList) // записать новые данные
+            }
+        } catch {
+            print(error)
+        }
+    }
+        
+    func saveGroupsToRealm(_ grougList: [Group]) {
+        do {
+            let realm = try Realm()
+            try realm.write{
+                realm.add(grougList)
             }
         } catch {
             print(error)
         }
     }
     
-    func saveGroupsToRealm(_ grougList: [Group]) {
+    func deleteAllFromRealm() {
         do {
             let realm = try Realm()
             try realm.write{
-                realm.add(grougList)
+                realm.deleteAll()
             }
         } catch {
             print(error)

@@ -82,7 +82,7 @@ class GetGroupsList {
                 }
                 
                 DispatchQueue.main.async {
-                    RealmOperations().saveGroupsToRealm(grougList) // так работает верно
+                    RealmOperations().saveGroupsToRealm(grougList)
                     complition(grougList)
                 }
                 

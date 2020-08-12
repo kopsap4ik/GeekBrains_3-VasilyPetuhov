@@ -33,8 +33,8 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosFriendCell", for: indexPath) as! PhotosFriendCollectionViewCell
         
         if let imgUrl = URL(string: collectionPhotos[indexPath.row].photo) {
-            let photo = ImageResource(downloadURL: imgUrl) //работает через Kingfisher  (с кэшем)
-            cell.photosFrienndImage.kf.setImage(with: photo) //работает через Kingfisher (с кэшем)
+            let photo = ImageResource(downloadURL: imgUrl) //работает через Kingfisher
+            cell.photosFrienndImage.kf.setImage(with: photo) //работает через Kingfisher
             
             //cell.photosFrienndImage.load(url: imgUrl)  // работает через extension UIImageView
         }

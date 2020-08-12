@@ -14,7 +14,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // клик по любому месту scrollView для скрытия клавиатуры - Жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
@@ -22,7 +22,14 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         
         // * делегаты для переноса фокуса на следующее поле ввода
         self.loginTextField.delegate = self
-        self.passwordTextField.delegate = self
+        self.passwordTextField.delegate = self    
+        
+        // проверка истек ли срок действия ключа доступа к ВК
+//        if session.expiredDate != nil, session.expiredDate > Date()  {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { //задержка, чтобы отработал переход
+//                self.performSegue(withIdentifier: "login", sender: nil)
+//            }
+//        }
         
     }
     
@@ -34,12 +41,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // Второе — когда она пропадает
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
-            
-//        if session.token != "" {
-//            print(session.token)
-//            performSegue(withIdentifier: "login", sender: nil)
         
-        //}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,7 +94,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func loginPushButton(_ sender: Any) {
-// авторизация
+        // авторизация
         guard loginTextField.text == "admin" && passwordTextField.text == "123456" else {
             // Создаем контроллер для ошибки
             let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль!", preferredStyle: .alert)

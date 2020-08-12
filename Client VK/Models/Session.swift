@@ -15,22 +15,22 @@ class Session {
     
     // хранение токена в VK
     var token: String {
-        get{
-            return KeychainWrapper.standard.string(forKey: "tokenVK") ?? ""
-        }
-        set{
-            KeychainWrapper.standard.set(newValue, forKey: "tokenVK")
-        }
+        get{ KeychainWrapper.standard.string(forKey: "tokenVK") ?? "" }
+        set{ KeychainWrapper.standard.set(newValue, forKey: "tokenVK") }
     }
     
     // хранение идентификатора пользователя VK
     var userId: Int {
+        get { KeychainWrapper.standard.integer(forKey: "userId") ?? 0 }
+        set { KeychainWrapper.standard.set(newValue, forKey: "userId") }
+    }
+        
+    var expiredDate: Date {
         get {
-            return KeychainWrapper.standard.integer(forKey: "userId") ?? 0
+            UserDefaults.standard.register(defaults: ["expiresIn" : Date()])
+            return UserDefaults.standard.object(forKey: "expiresIn") as! Date
         }
-        set{
-            KeychainWrapper.standard.set(newValue, forKey: "userId")
-        }
+        set { UserDefaults.standard.set(newValue, forKey: "expiresIn") }
     }
     
 }

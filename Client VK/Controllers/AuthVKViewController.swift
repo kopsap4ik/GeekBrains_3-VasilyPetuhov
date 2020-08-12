@@ -16,7 +16,7 @@ class AuthVKViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
-        //        removeCookie() //очистка куки, чтобы заново ввести логин и пароль
+//        removeCookie() //очистка куки, чтобы заново ввести логин и пароль
         loadAuthVK()
     }
     
@@ -65,6 +65,7 @@ extension AuthVKViewController: WKNavigationDelegate {
             decisionHandler(.allow)
             return
         }
+        print(fragment)
         
         let params = fragment
             .components(separatedBy: "&")
@@ -78,10 +79,10 @@ extension AuthVKViewController: WKNavigationDelegate {
         }
         
         //DispatchQueue.main.async {
-            
-            if let token = params["access_token"], let userID = params["user_id"] {
+            if let token = params["access_token"], let userID = params["user_id"], let expiresIn = params["expires_in"] {
                 self.session.token = token
-                self.session.userId = Int(userID)!
+                self.session.userId = Int(userID) ?? 0
+                self.session.expiredDate = Date(timeIntervalSinceNow: TimeInterval(Int(expiresIn) ?? 0))
                 
                 decisionHandler(.cancel)
                 
@@ -92,7 +93,6 @@ extension AuthVKViewController: WKNavigationDelegate {
                 // просто переход на контроллер с логином при неуспешной авторизации
                 self.performSegue(withIdentifier: "AuthVKUnsuccessful", sender: nil)
             }
-            
        // }
     }
 }
