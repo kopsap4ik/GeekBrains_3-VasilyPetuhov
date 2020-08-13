@@ -8,25 +8,23 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class GroupTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // получение данный json в зависимости от требования
-        GetGroupsList().loadData() { [weak self] (complition) in
-            DispatchQueue.main.async {
-                self?.myGroups = complition
-                self?.tableView.reloadData()
-            }
+                
+        loadGroupsFromRealm() // загрузка данных из реалма (кэш) для первоначального отображения
+
+        // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
+        GetGroupsList().loadData() { [weak self] () in
+            self?.loadGroupsFromRealm()
         }
+        
     }
     
     var myGroups: [Group] = []
-//    var myGroups = [
-//        Groups(groupName: "Самая лучшая группа", groupLogo: UIImage(named: "group1"))
-//    ]
     
 
     // MARK: - Table view data source
@@ -77,12 +75,36 @@ class GroupTableViewController: UITableViewController {
                 
 //                // проверка что группа уже в списке (нужен Equatable)
                 guard !myGroups.description.contains(newGroup.groupName) else { return }
-                myGroups.append(newGroup)
 
-                RealmOperations().saveGroupsToRealm(myGroups)
+                myGroups.append(newGroup)
+                
+                //  добавление одной новой группы в реалм
+//                do {
+//                    let realm = try Realm()
+//                    try realm.write{
+//                        realm.add(newGroup)
+//                    }
+//                } catch {
+//                    print(error)
+//                }
+//                loadGroupsFromRealm()
                 
                 tableView.reloadData()
             }
+        }
+    }
+    
+    // MARK: - functions
+    
+    func loadGroupsFromRealm() {
+        do {
+            let realm = try Realm()
+            let groupsFromRealm = realm.objects(Group.self)
+            myGroups = Array(groupsFromRealm)
+            guard groupsFromRealm.count != 0 else { return } // проверка, что в реалме что-то есть
+            tableView.reloadData()
+        } catch {
+            print(error)
         }
     }
 

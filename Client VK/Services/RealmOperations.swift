@@ -28,6 +28,8 @@ class RealmOperations {
         do {
             let realm = try Realm()
             try realm.write{
+                let oldGroupList = realm.objects(Group.self)
+                realm.delete(oldGroupList)
                 realm.add(grougList)
             }
         } catch {
