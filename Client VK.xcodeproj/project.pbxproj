@@ -155,8 +155,8 @@
 			children = (
 				D9E13E2024CAEB3E00370B7E /* Session.swift */,
 				D9A5DAC224C5E237006D3E55 /* Friend.swift */,
-				D9A5DAC424C5E325006D3E55 /* Group.swift */,
 				D9008E1A24DC20F00030A376 /* Photo.swift */,
+				D9A5DAC424C5E325006D3E55 /* Group.swift */,
 				D9D11C8624C7334600525073 /* PostNews.swift */,
 			);
 			path = Models;

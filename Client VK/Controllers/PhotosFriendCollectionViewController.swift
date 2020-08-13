@@ -8,21 +8,23 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class PhotosFriendCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GetPhotosFriend().loadData(owner_id: userID) { [weak self] (complition) in
-            DispatchQueue.main.async {
-                self?.collectionPhotos = complition
-                self?.collectionView.reloadData()
-            }
+        loadPhotosFromRealm() // загрузка данных из реалма (кэш) для первоначального отображения
+        
+        // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
+        GetPhotosFriend().loadData(ownerID) { [weak self] () in
+            self?.loadPhotosFromRealm()
         }
+
     }
     
-    var userID = ""
+    var ownerID = ""
     var collectionPhotos: [Photo] = []
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,6 +60,19 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
         }
     }
     
+    // MARK: - functions
+    
+    func loadPhotosFromRealm() {
+        do {
+            let realm = try Realm()
+            let photosFromRealm = realm.objects(Photo.self).filter("ownerID == %@", ownerID)
+            collectionPhotos = Array(photosFromRealm)
+            guard collectionPhotos.count != 0 else { return } // проверка, что в реалме что-то есть
+            collectionView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
     
     
 }

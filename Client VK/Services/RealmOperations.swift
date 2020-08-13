@@ -23,11 +23,26 @@ class RealmOperations {
             print(error)
         }
     }
+    
+    func savePhotosToRealm(_ photoList: [Photo], _ ownerID: String) {
+        do {
+            let realm = try Realm()
+            try realm.write{
+                let oldPhotoList = realm.objects(Photo.self).filter("ownerID == %@", ownerID)
+                realm.delete(oldPhotoList)
+                realm.add(photoList)
+            }
+        } catch {
+            print(error)
+        }
+    }
         
     func saveGroupsToRealm(_ grougList: [Group]) {
         do {
             let realm = try Realm()
             try realm.write{
+                let oldGroupList = realm.objects(Group.self)
+                realm.delete(oldGroupList)
                 realm.add(grougList)
             }
         } catch {
