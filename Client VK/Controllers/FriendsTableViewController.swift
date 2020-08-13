@@ -209,7 +209,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             // индекс нажатой ячейки
             if let indexPath = tableView.indexPathForSelectedRow {
                 friend.title = getNameFriendForCell(indexPath) //тайтл экрана (имя пользователя)
-                friend.userID = getIDFriend(indexPath)
+                friend.ownerID = getIDFriend(indexPath)
             }
         }
     }

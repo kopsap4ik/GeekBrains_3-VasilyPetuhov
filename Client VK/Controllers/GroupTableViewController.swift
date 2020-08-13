@@ -21,7 +21,6 @@ class GroupTableViewController: UITableViewController {
         GetGroupsList().loadData() { [weak self] () in
             self?.loadGroupsFromRealm()
         }
-        
     }
     
     var myGroups: [Group] = []
