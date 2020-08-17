@@ -32,7 +32,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
     }
     
-    lazy var realm: Realm = {
+    var realm: Realm = {
         let configrealm = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         let realm = try! Realm(configuration: configrealm)
         return realm
@@ -120,6 +120,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             switch changes {
             case .initial:
                 self?.loadFriendsFromRealm()
+            //case let .update (_, deletions, insertions, modifications):
             case .update:
                 self?.loadFriendsFromRealm()
 
@@ -138,7 +139,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func loadFriendsFromRealm() {
-            friendsList = Array(friendsFromRealm)       
+            friendsList = Array(friendsFromRealm)
             guard friendsList.count != 0 else { return } // проверка, что в реалме что-то есть
             makeNamesList()
             sortCharacterOfNamesAlphabet()
