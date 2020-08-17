@@ -17,12 +17,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        VKService().loadData(.friends) { () in
-            
-        }
+        // переработка в дженерики, нужно доработать
+//        VKService().loadData(.friends) { () in
+//
+//        }
+                
+        subscribeToNotificationRealm() // подписка на нотификации реалма + обновление таблицы
         
-        loadFriendsFromRealm() // загрузка данных из реалма (кэш) для первоначального отображения
-    
         // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
         GetFriendsList().loadData() { [weak self] () in
             self?.loadFriendsFromRealm()
@@ -31,13 +32,25 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
     }
     
+    lazy var realm: Realm = {
+        let configrealm = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        let realm = try! Realm(configuration: configrealm)
+        return realm
+    }()
+    
+    lazy var friendsFromRealm: Results<Friend> = {
+        return realm.objects(Friend.self)
+    }()
+    
+    var notificationToken: NotificationToken?
+    
     var friendsList: [Friend] = []
     var namesListFixed: [String] = [] //эталонный массив с именами для сравнения при поиске
     var namesListModifed: [String] = [] // массив с именами меняется (при поиске) и используется в таблице
     var letersOfNames: [String] = []
     
     
-    // MARK: - Table view
+    // MARK: - TableView
     
     // количество секций
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,11 +70,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
 
         return header
     }
-    
-    // хедер тайтл (заглавная буква имен) не работает, если используется "viewForHeaderInSection"
-    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return letersOfNames[section]
-    //    }
     
     // список букв для навигации (справа контрол)
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -105,21 +113,36 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    // MARK: - functions
+    // MARK: - Functions
+    
+    private func subscribeToNotificationRealm() {
+        notificationToken = friendsFromRealm.observe { [weak self] (changes) in
+            switch changes {
+            case .initial:
+                self?.loadFriendsFromRealm()
+            case .update:
+                self?.loadFriendsFromRealm()
+
+                //self?.tableView.beginUpdates()
+                
+                // крашится при вызове, так как не попадает в секции, надо перерабатывать логику
+                //self?.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                //self?.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                //self?.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                
+                //self?.tableView.endUpdates()
+            case let .error(error):
+                print(error)
+            }
+        }
+    }
     
     func loadFriendsFromRealm() {
-        do {
-            let realm = try Realm()
-            let friendsFromRealm = realm.objects(Friend.self)
-            friendsList = Array(friendsFromRealm)
-            
+            friendsList = Array(friendsFromRealm)       
             guard friendsList.count != 0 else { return } // проверка, что в реалме что-то есть
             makeNamesList()
             sortCharacterOfNamesAlphabet()
             tableView.reloadData()
-        } catch {
-            print(error)
-        }
     }
     
     // создание массива из имен пользователей
@@ -177,7 +200,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    // MARK: - searchBar
+    // MARK: - SearchBar
+    
     // поиск по именам
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //        searchList = searchText.isEmpty ? friendsList : friendsList.filter { (item: String) -> Bool in
@@ -202,7 +226,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    // MARK: - segue
+    // MARK: - Segue
     
     // переход на экран с коллекцией фоток + передача фоток конкретного пользователя
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

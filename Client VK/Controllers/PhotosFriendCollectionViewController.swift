@@ -27,6 +27,9 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     var ownerID = ""
     var collectionPhotos: [Photo] = []
     
+    
+    // MARK: - TableView
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionPhotos.count
     }
@@ -44,7 +47,24 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: - segue
+    
+    // MARK: - Functions
+    
+    func loadPhotosFromRealm() {
+        do {
+            let realm = try Realm()
+            let photosFromRealm = realm.objects(Photo.self).filter("ownerID == %@", ownerID)
+            collectionPhotos = Array(photosFromRealm)
+            guard collectionPhotos.count != 0 else { return } // проверка, что в реалме что-то есть
+            collectionView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    // MARK: - Segue
+    
     // переход на контроллер с отображением крупной фотографии
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -57,20 +77,6 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
                 photosFriend.allPhotos = collectionPhotos //фотки
                 photosFriend.countCurentPhoto = indexPath.row // можно указать (indexPath[0][1]) или использовать (?.first) как сделано выше
             }
-        }
-    }
-    
-    // MARK: - functions
-    
-    func loadPhotosFromRealm() {
-        do {
-            let realm = try Realm()
-            let photosFromRealm = realm.objects(Photo.self).filter("ownerID == %@", ownerID)
-            collectionPhotos = Array(photosFromRealm)
-            guard collectionPhotos.count != 0 else { return } // проверка, что в реалме что-то есть
-            collectionView.reloadData()
-        } catch {
-            print(error)
         }
     }
     
