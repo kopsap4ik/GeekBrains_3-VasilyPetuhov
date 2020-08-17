@@ -17,6 +17,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        VKService().loadData(.friends) { () in
+            
+        }
+        
         loadFriendsFromRealm() // загрузка данных из реалма (кэш) для первоначального отображения
     
         // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
