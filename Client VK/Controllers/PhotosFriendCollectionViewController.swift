@@ -18,10 +18,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
         subscribeToNotificationRealm()
         
         // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
-        GetPhotosFriend().loadData(ownerID) { [weak self] () in
-            self?.loadPhotosFromRealm()
-        }
-
+        GetPhotosFriend().loadData(ownerID)
     }
     
     var realm: Realm = {

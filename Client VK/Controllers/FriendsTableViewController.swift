@@ -25,9 +25,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         subscribeToNotificationRealm() // подписка на нотификации реалма + обновление таблицы
         
         // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
-        GetFriendsList().loadData() { [weak self] () in
-            self?.loadFriendsFromRealm()
-        }
+        GetFriendsList().loadData()
         
         searchBar.delegate = self
     }
