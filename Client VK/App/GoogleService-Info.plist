@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>887273070042-0ttgi9fj03tngb5f6c0t4ip7s71lma5k.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.887273070042-0ttgi9fj03tngb5f6c0t4ip7s71lma5k</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAHHajV1TkQhEWV622OjtMqva8jVAkcQuw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>887273070042</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.VasPet.Client-VK</string>
+	<key>PROJECT_ID</key>
+	<string>vk-geekbrains-9eb8f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vk-geekbrains-9eb8f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:887273070042:ios:929c390be6f17f548d34e3</string>
+	<key>DATABASE_URL</key>
+	<string>https://vk-geekbrains-9eb8f.firebaseio.com</string>
+</dict>
+</plist>

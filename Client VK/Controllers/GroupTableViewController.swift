@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import FirebaseDatabase
 
 class GroupTableViewController: UITableViewController {
     
@@ -34,6 +35,11 @@ class GroupTableViewController: UITableViewController {
     var notificationToken: NotificationToken?
     
     var myGroups: [Group] = []
+    
+    // MARK: - Firebase
+    
+    lazy var database = Database.database()
+    lazy var ref: DatabaseReference = self.database.reference(withPath: "Users")
     
 
     // MARK: - TableView
@@ -131,7 +137,7 @@ class GroupTableViewController: UITableViewController {
                     let newGroup = newGroupFromController.GroupsList[indexPath.row]
                     
     //                // проверка что группа уже в списке (нужен Equatable)
-                    guard !myGroups.description.contains(newGroup.groupName) else { return }
+                    guard myGroups.description.contains(newGroup.groupName) == false else { return }
                     
                     // добавить новую группу (не нужно, так как все берется из Реалма)
                     //myGroups.append(newGroup)
@@ -144,6 +150,11 @@ class GroupTableViewController: UITableViewController {
                     } catch {
                         print(error)
                     }
+                    
+                    // запись в Firebase группы, которую добавил пользователь
+                    //let newUserID = UserFirebase(userID: Session.instance.userId)
+                    //ref.child(<#T##pathString: String##String#>)
+                    //ref.setValue(newUserID.toDictionary())
                 }
             }
         }

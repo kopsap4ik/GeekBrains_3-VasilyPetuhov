@@ -8,51 +8,23 @@
 
 import UIKit
 import RealmSwift
+//import Firebase // не видит FirebaseApp.configure()
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // для использования Firebase
+    
+        FirebaseApp.configure()
+        
         // удалить БД реалм если что-то не так (например изменится струтура БД)
          //Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-
-  
-        // Deleting Realm files
-        // https://realm.io/docs/swift/latest/#deleting-realm-files
-//        autoreleasepool {
-//            // all Realm usage here
-//        }
-//        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
-//        let realmURLs = [
-//            realmURL,
-//            realmURL.appendingPathExtension("lock"),
-//            realmURL.appendingPathExtension("note"),
-//            realmURL.appendingPathExtension("management")
-//        ]
-//        for URL in realmURLs {
-//            do {
-//                try FileManager.default.removeItem(at: URL)
-//            } catch {
-//                // handle error
-//            }
-//        }
-        
-        
-        // Local migrations Realm (при изменении названий в базе)
-        // https://realm.io/docs/swift/latest/#migrations
-//        let config = Realm.Configuration(
-//            schemaVersion: 1,
-//            migrationBlock: { migration, oldSchemaVersion in
-//                if (oldSchemaVersion < 1) {
-//                }
-//            })
-//        Realm.Configuration.defaultConfiguration = config
-//        let realm = try! Realm()
-        
 
         return true
     }
