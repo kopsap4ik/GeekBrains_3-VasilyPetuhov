@@ -98,6 +98,7 @@ extension AuthVKViewController: WKNavigationDelegate {
                 decisionHandler(.cancel)
                  
                 writeUserToFirebase(userID)
+                //testWriteFireBase(userID)
                 
                 // переход на контроллер с логином и вход в приложение при успешной авторизации
                 self.performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
@@ -123,17 +124,33 @@ extension AuthVKViewController: WKNavigationDelegate {
             
             // проверка, что пользователь уже записан в Firebase
             guard keys.contains(userID) == false else {
-                ref.removeAllObservers() // отписываемся от уведомлений, чтобы не происходило изменений при изменении базы
+                ref.removeAllObservers() // отписываемся от уведомлений, чтобы не происходила запись  при изменении базы
                 
-                let value = users.compactMap { $0.value }
-                print("\(userID): \(value)")
+                let user = snapshot.childSnapshot(forPath: userID).value
+                //let user = snapshot.children
+                print("Текущий пользователь с ID \(userID) добавил следующие группы:\n\(user ?? "")")
+                
+//                let value = users.compactMap { $0.value }
+//                print("Пользователь: \(userID) добавил следующие группы: \(value)")
                 return
             }
             
             // пишем нового пользователя если его нет в Firebase
-            ref.child(userID).setValue("Пользователь не добавил ни одной группы")
+            ref.child(userID).setValue("нет добавленных групп")
             print("В Firebase записан новый пользователь, ID: \(userID)")
         }
     }
+    
+//    private func testWriteFireBase(_ userID: String){
+//        // работаем с Firebase
+//        let database = Database.database()
+//        let ref: DatabaseReference = database.reference(withPath: "All logged users").child(userID)
+//
+//        // чтение из Firebase
+//        ref.observe(.value) { snapshot in
+//            //let users = snapshot.children.compactMap { $0 as? DataSnapshot }
+//            ref.child("xxx").setValue("yyy")
+//        }
+//    }
     
 }

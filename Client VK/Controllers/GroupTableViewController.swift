@@ -36,11 +36,6 @@ class GroupTableViewController: UITableViewController {
     
     var myGroups: [Group] = []
     
-    // MARK: - Firebase
-    
-    lazy var database = Database.database()
-    lazy var ref: DatabaseReference = self.database.reference(withPath: "Users")
-    
 
     // MARK: - TableView
 
@@ -151,12 +146,41 @@ class GroupTableViewController: UITableViewController {
                         print(error)
                     }
                     
-                    // запись в Firebase группы, которую добавил пользователь
-                    //let newUserID = UserFirebase(userID: Session.instance.userId)
-                    //ref.child(<#T##pathString: String##String#>)
-                    //ref.setValue(newUserID.toDictionary())
+                    writeNewGroupToFirebase(newGroup) // работа с Firebase
+                    
                 }
             }
         }
+    
+    // MARK:  - Firebase
+    
+    private func writeNewGroupToFirebase(_ newGroup: Group){
+        // работаем с Firebase
+        let database = Database.database()
+        // путь к нужному пользователю в Firebase (тот кто залогинился уже есть базе, другие не интересны)
+        let ref: DatabaseReference = database.reference(withPath: "All logged users").child(String(Session.instance.userId))
+        
+        // чтение из Firebase
+        ref.observe(.value) { snapshot in
+            
+            let groupsIDs = snapshot.children.compactMap { $0 as? DataSnapshot }
+                .compactMap { $0.key }
+            
+            // проверка есть ли ID группы в Firebase
+            guard groupsIDs.contains(String(newGroup.id)) == false else { return }
+    
+            //ref.removeAllObservers() // отписываемся от уведомлений, чтобы не происходило изменений при изменении базы
+            ref.child(String(newGroup.id)).setValue(newGroup.groupName) // записываем новую группу в Firebase
+            
+            print("Для пользователя с ID: \(String(Session.instance.userId)) в Firebase записана группа:\n\(newGroup.groupName)")
+            
+            let groups = snapshot.children.compactMap { $0 as? DataSnapshot }
+            .compactMap { $0.value }
+            
+            print("\nРанее добавленные в Firebase группы пользователя с ID \(String(Session.instance.userId)):\n\(groups)")
+            ref.removeAllObservers() // отписываемся от уведомлений, чтобы не происходило изменений при записи в базу
+        }
+    }
+    
 
 }

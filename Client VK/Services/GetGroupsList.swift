@@ -19,6 +19,7 @@ struct GroupsResponse:  Decodable {
         struct Item: Decodable {
             var name: String
             var logo: String  // уже тут нужно писать желаемые названия
+            var id: Int
             
             // не нужные в приложении поля, которые есть в json-е
             //var id: Int
@@ -31,12 +32,14 @@ struct GroupsResponse:  Decodable {
             enum CodingKeys: String, CodingKey {
                 case name
                 case logo = "photo_50"
+                case id
             }
             
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 name = try container.decode(String.self, forKey: .name)
                 logo = try container.decode(String.self, forKey: .logo)
+                id = try container.decode(Int.self, forKey: .id)
             }
         }
     }
@@ -78,7 +81,8 @@ class GetGroupsList {
                 for i in 0...arrayGroups.response.items.count-1 {
                     let name = ((arrayGroups.response.items[i].name))
                     let logo = arrayGroups.response.items[i].logo
-                    grougList.append(Group.init(groupName: name, groupLogo: logo))
+                    let id = arrayGroups.response.items[i].id
+                    grougList.append(Group.init(groupName: name, groupLogo: logo, id: id))
                 }
                 
                 DispatchQueue.main.async {
