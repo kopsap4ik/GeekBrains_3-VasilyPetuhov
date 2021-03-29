@@ -46,7 +46,7 @@ struct GroupsResponse:  Decodable {
 class GetGroupsList {
     
     //данные для авторизации в ВК
-    func loadData(complition: @escaping () -> Void ) {
+    func loadData() {
         
         // Конфигурация по умолчанию
         let configuration = URLSessionConfiguration.default
@@ -83,12 +83,10 @@ class GetGroupsList {
                 
                 DispatchQueue.main.async {
                     RealmOperations().saveGroupsToRealm(grougList)
-                    complition()
                 }
                 
             } catch let error {
                 print(error)
-                complition()
             }
         }
         task.resume()

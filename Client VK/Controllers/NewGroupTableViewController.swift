@@ -13,13 +13,10 @@ class NewGroupTableViewController: UITableViewController, UISearchResultsUpdatin
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         setupSearchBar()
-    
     }
 
     var searchController:UISearchController!
-    
     var GroupsList: [Group] = []
     
     // MARK: - Functions
@@ -29,6 +26,7 @@ class NewGroupTableViewController: UITableViewController, UISearchResultsUpdatin
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Введите запрос для поиска"
+        //searchController.searchBar.text = "Swift"
         tableView.tableHeaderView = searchController.searchBar
         searchController.obscuresBackgroundDuringPresentation = false // не скрывать таблицу под поиском (размытие), иначе не будет работать сегвей из поиска
         

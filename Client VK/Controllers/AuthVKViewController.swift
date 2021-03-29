@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import FirebaseDatabase
 
 class AuthVKViewController: UIViewController {
     
@@ -21,6 +22,14 @@ class AuthVKViewController: UIViewController {
     }
     
     @IBOutlet weak var webView: WKWebView!
+    
+    // MARK: - Firebase
+    
+//    lazy var database = Database.database()
+//    lazy var ref: DatabaseReference = self.database.reference(withPath: "All logged users")
+    
+    
+    // MARK: - Functions
     
     func loadAuthVK() {
         // конструктор для URL
@@ -57,6 +66,8 @@ class AuthVKViewController: UIViewController {
     
 }
 
+// MARK: - Extension
+
 extension AuthVKViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
@@ -65,7 +76,7 @@ extension AuthVKViewController: WKNavigationDelegate {
             decisionHandler(.allow)
             return
         }
-        print(fragment)
+        //print(fragment)
         
         let params = fragment
             .components(separatedBy: "&")
@@ -85,6 +96,8 @@ extension AuthVKViewController: WKNavigationDelegate {
                 self.session.expiredDate = Date(timeIntervalSinceNow: TimeInterval(Int(expiresIn) ?? 0))
                 
                 decisionHandler(.cancel)
+                 
+                writeUserToFirebase(userID)
                 
                 // переход на контроллер с логином и вход в приложение при успешной авторизации
                 self.performSegue(withIdentifier: "AuthVKSuccessful", sender: nil)
@@ -95,4 +108,32 @@ extension AuthVKViewController: WKNavigationDelegate {
             }
        // }
     }
+    
+    // MARK:  - Firebase
+    
+    private func writeUserToFirebase(_ userID: String){
+        // работаем с Firebase
+        let database = Database.database()
+        let ref: DatabaseReference = database.reference(withPath: "All logged users")
+        
+        // чтение из Firebase
+        ref.observe(.value) { snapshot in
+            let users = snapshot.children.compactMap { $0 as? DataSnapshot }
+            let keys = users.compactMap { $0.key }
+            
+            // проверка, что пользователь уже записан в Firebase
+            guard keys.contains(userID) == false else {
+                ref.removeAllObservers() // отписываемся от уведомлений, чтобы не происходило изменений при изменении базы
+                
+                let value = users.compactMap { $0.value }
+                print("\(userID): \(value)")
+                return
+            }
+            
+            // пишем нового пользователя если его нет в Firebase
+            ref.child(userID).setValue("Пользователь не добавил ни одной группы")
+            print("В Firebase записан новый пользователь, ID: \(userID)")
+        }
+    }
+    
 }

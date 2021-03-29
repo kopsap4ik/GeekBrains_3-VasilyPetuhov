@@ -15,17 +15,30 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadPhotosFromRealm() // загрузка данных из реалма (кэш) для первоначального отображения
+        subscribeToNotificationRealm()
         
         // запуск обновления данных из сети, запись в Реалм и загрузка из реалма новых данных
-        GetPhotosFriend().loadData(ownerID) { [weak self] () in
-            self?.loadPhotosFromRealm()
-        }
-
+        GetPhotosFriend().loadData(ownerID)
     }
+    
+    var realm: Realm = {
+        let configrealm = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        let realm = try! Realm(configuration: configrealm)
+        return realm
+    }()
+    
+    lazy var photosFromRealm: Results<Photo> = {
+        return realm.objects(Photo.self).filter("ownerID == %@", ownerID)
+    }()
+    
+    var notificationToken: NotificationToken?
+    
     
     var ownerID = ""
     var collectionPhotos: [Photo] = []
+    
+    
+    // MARK: - TableView
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionPhotos.count
@@ -44,7 +57,47 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: - segue
+    
+    // MARK: - Functions
+    
+    private func subscribeToNotificationRealm() {
+        notificationToken = photosFromRealm.observe { [weak self] (changes) in
+            switch changes {
+            case .initial:
+                self?.loadPhotosFromRealm()
+            //case let .update (_, deletions, insertions, modifications):
+            case .update:
+                self?.loadPhotosFromRealm()
+
+                // РАБОТАЕТ сначала надо изменить массив фоток, а потом удалить из коллекции
+                //print(deletions.map { $0 })
+                //_ = deletions.map{ self?.collectionPhotos.remove (at: $0) }
+                //self?.collectionPhotos.remove(at: deletions.map{ $0 })
+                
+                //self?.collectionView.deleteItems(at: deletions.map{ IndexPath(item: $0, section: 0) })
+                
+            
+                // крашится при удалении из реалма
+                //self?.collectionView.deleteItems(at: deletions.map{ IndexPath(item: $0, section: 0) })
+                //self?.collectionView.insertItems(at: insertions.map{ IndexPath(item: $0, section: 0) })
+                //self?.collectionView.reloadItems(at: modifications.map{ IndexPath(item: $0, section: 0) })
+                
+
+            case let .error(error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadPhotosFromRealm() {
+            collectionPhotos = Array(photosFromRealm)
+            guard collectionPhotos.count != 0 else { return } // проверка, что в реалме что-то есть
+            collectionView.reloadData()
+    }
+    
+    
+    // MARK: - Segue
+    
     // переход на контроллер с отображением крупной фотографии
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -57,20 +110,6 @@ class PhotosFriendCollectionViewController: UICollectionViewController {
                 photosFriend.allPhotos = collectionPhotos //фотки
                 photosFriend.countCurentPhoto = indexPath.row // можно указать (indexPath[0][1]) или использовать (?.first) как сделано выше
             }
-        }
-    }
-    
-    // MARK: - functions
-    
-    func loadPhotosFromRealm() {
-        do {
-            let realm = try Realm()
-            let photosFromRealm = realm.objects(Photo.self).filter("ownerID == %@", ownerID)
-            collectionPhotos = Array(photosFromRealm)
-            guard collectionPhotos.count != 0 else { return } // проверка, что в реалме что-то есть
-            collectionView.reloadData()
-        } catch {
-            print(error)
         }
     }
     
